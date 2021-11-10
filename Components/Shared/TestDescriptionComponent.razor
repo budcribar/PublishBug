@@ -1,0 +1,45 @@
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject Task LoadTask
+@inject IToolFramework Framework
+
+<div id='testsdescription-window'>
+	@if (!isInitialized)
+	{
+		<div class='loading-text flashing-text-animation'>
+			@Localizer.STR_HELP_INITIALIZING_DIAGS...
+		</div>
+	}
+
+	@foreach (var uiTool in uiToolList)
+	{
+		<div class="row" id="testsdescription-toollist">
+			<div tabindex="0"   @onkeyup='(e) => CheckForEnter(e,() => toggleToolContent(uiTool))' @onclick="() => toggleToolContent(uiTool)" class="tool-header @(uiTool.isExpanded ? "tool-open" : "")" id="testsdescription-toolitem">
+
+				<span class="glyphicon about-icon @(uiTool.isExpanded ? "glyphicon-triangle-bottom": "glyphicon-triangle-right" )" aria-hidden="true" style="font-family:'Glyphicons Halflings';">
+				</span>
+
+				<span id="testsdescription-toolname">@uiTool.tool.Name</span>
+			</div>
+			@if (uiTool.isExpanded)
+			{
+				<div class="tool-content" id="testsdescription-toolinfo">
+					<div>@formatVersionInfo(uiTool.tool.Version)</div>
+
+					@if (string.IsNullOrEmpty(uiTool.tool.Description))
+					{
+						<div>No description provided.</div>
+					}
+					else
+					{
+						<div>
+							@((MarkupString)uiTool.tool.Description)
+						</div>
+					}
+				</div>
+			}
+		</div>
+	}
+
+</div>
+
+

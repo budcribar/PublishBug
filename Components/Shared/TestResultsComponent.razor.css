@@ -1,0 +1,224 @@
+.bg-green {
+    background-color: #22bb3a;
+    color: #dfe8df;
+}
+
+.bg-green:hover {
+    outline-color: #9ce652;
+}
+
+.tile-label {
+    font-size: 1.5em;
+}
+
+.test-result {
+    width: calc(33% - 8px);
+}
+
+.bg-not-available {
+    color: #adadad;
+    background-color: #6b6b6a;
+}
+
+.modal-footer {
+    text-align: center;
+}
+
+.tile-container {
+    padding-bottom: 10px;
+}
+
+.log-text-container {
+    padding: .5em 1em;
+    white-space: pre-line;
+}
+
+@media(min-height: 750px) and (max-height: 900px) {
+}
+
+.flexChild {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.rowParent {
+    display: -webkit-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+}
+
+.fa {
+    color: #606060;
+    font-weight: bold;
+}
+
+.paging-btn {
+    display: inline-block;
+    padding: .1em .6em;
+    border: 1px solid #CCCCCC;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-right: .1em;
+    /*line-height: 21px;*/
+}
+
+.paging-btn:hover {
+    border-color: #777777;
+}
+
+.paging-btn:hover .fa {
+    color: #0096D6;
+}
+
+.paging-btn.disabled .fa,
+.paging-btn.disabled:hover .fa {
+    color: #D2D2D2;
+    cursor: not-allowed;
+}
+
+.paging-btn.disabled {
+    color: #D2D2D2;
+    border-color: #CCCCCC;
+    background-color: #F2F2F2;
+    cursor: not-allowed;
+}
+
+.min-width {
+    width: 1px;
+}
+
+.log-table-container {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.paging-info-container {
+    align-items: center;
+    display: flex;
+    margin-right: .5em;
+}
+
+.paging-controls-container {
+    display: flex;
+    /*justify-content: flex-end; */
+    justify-content: space-between;
+    /*margin-bottom: 0.7em; */
+    user-select: none;
+    min-width: 10em;
+}
+
+.tool-logs-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: .5em;
+    margin-top: .5em;
+    width: 100%;
+    align-items: initial;
+}
+
+.paging-info-wrapper {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: row;
+}
+
+.logs-not-found-container,
+.searching-log-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-weight: bold;
+    color: #666666;
+    border-left: 1px solid #666666;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    padding: 0.75em .5em .5em .5em;
+    border: 1px solid #dddddd;
+}
+
+.failure-id {
+    justify-content: space-between;
+}
+
+.failed-test,
+.failed-test .status-text>span {
+    background-color: #F7D7D7;
+    color: red;
+    font-weight: bold;
+}
+
+.passed-test,
+.passed-test .status-text>span {
+    background-color: #a1ffa1;
+    color: #008424;
+    font-weight: bold;
+}
+.audio-suggestion {
+    font-size: 1.3em;
+    /*margin-top: 20px;*/
+    text-align: left;
+    display: flex; 
+    flex-direction: column; 
+    width: 100%;
+    background-color: yellow
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #5A5A5A;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 1em;
+}
+
+.content {
+    /*background: red;*/
+    border-top: 1px solid lightgrey;
+    flex: 1;
+    position: relative;
+    padding: 1em;
+}
+
+.inner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: auto;
+}
+
+/*bottom {
+    border-top: 1px solid lightgrey;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 1em 2em;
+}
+*/
+
+#testResultsContainer {
+    overflow-x: auto;
+    margin: 1em 0;
+    width: 100%;
+}
+
+.page-container-flex {
+    height: 100%;
+}

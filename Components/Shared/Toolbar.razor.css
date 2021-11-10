@@ -1,0 +1,54 @@
+﻿#zoomInContainer, #zoomOutContainer {
+    display: inline-block;
+}
+
+.glyphicon-zoom-out, .glyphicon-zoom-in{
+    font-size: 1.4em;
+    padding: .3em .5em;
+    cursor: pointer;
+}
+
+.glyphicon-download-alt{
+    font-size: 1.4em;
+    padding: .3em .5em;
+    cursor: pointer;
+}
+
+.toolbar {
+    margin-left: 1px; 
+    padding: 0.625em 1.25em 0.625em 1.25em;
+    box-shadow: 0 0.06em 0.25em 0 rgba(0, 0, 0, 0.2);    
+    background: #fff none repeat scroll 0 0;
+}
+
+.modal-footer {
+    text-align: center;
+    background-color: #e6e6e6;
+}
+
+/* .about-button {
+    margin-left: 10px;
+} */
+.close-button {
+    margin-top: 0; 
+    padding: 16px 12px; 
+    width: 10vw;
+}
+
+.zoom-button {
+    margin: 0;
+}
+
+.btn-update {
+    margin-right: 1em;
+}
+
+#btn-update {
+   display: none;
+   margin-right: 1em;
+}
+
+#btn-update span {
+    font-size: 1em;
+    padding: 0;
+}

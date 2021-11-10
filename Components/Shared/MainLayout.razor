@@ -1,0 +1,27 @@
+﻿@inherits LayoutComponentBase
+
+@*<span defaultOverlayTarget></span>*@
+
+<div id="container" class="flexChild columnParent" style="height: 100%; width: 100%; padding: 0;"> <!--[ngStyle]="{'font-size': scaledFontSize }"--> 
+    <div id="mainContentContainer" class="flexChild rowParent">
+    @*    
+        TODO Factory login?
+        <div class="login-container" *ngIf="loadState.isHpPlatform && loadState.isFactory && !loadState.isReady">
+            <factory-login (loginSuccessful)="userLoginSuccessful($event)"></factory-login>
+        </div>*@
+
+         @* TODO isExecuting 
+         <div [ngClass]="{'hidden': testService.isExecuting}" *ngIf="loadState.isHpPlatform && loadState.isReady" id="rowChild50580" class="flexChild">*@
+        <div id="rowChild50580" class="flexChild">
+           
+      
+            <NavComponent></NavComponent>
+        </div>
+
+        <div id="rowChild36975" class="flexChild selected" style="display: flex; flex-direction: column; overflow-x: auto;">
+            <Toolbar></Toolbar>
+            @Body
+        </div>
+
+    </div>
+</div>

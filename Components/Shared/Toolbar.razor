@@ -1,0 +1,195 @@
+﻿@using Components.Pages
+
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject ClientInterfaces.ILocalizeContext LocalizeContext
+@inject LogViewModel Model
+
+<div class="toolbar">
+    @* <div id="zoomOutContainer">
+        <span class="glyphicon glyphicon-zoom-in" aria-label="zoom in" role="button" aria-hidden="true" tabindex="0" id="zoomin" @onclick="() => zoomLevelChanged(1)"></span>
+        </div>
+        <div id="zoomInContainer">
+        <span class="glyphicon glyphicon-zoom-out" aria-label="zoom out" role="button" aria-hidden="true" tabindex="0" id="zoomout" @onclick="() => zoomLevelChanged(-1)"></span>
+        </div>*@
+    <div id="aboutContainer" class="float-right" dir="auto">
+        @if (!isUwp)
+        {
+            <button class="hp-btn primary" aria-hidden="true" @onclick="openHpWebsite">
+                @Localizer.F30140_Key6
+            </button>
+        }
+
+        &nbsp;
+        <button type="button" class="hp-btn primary" @onclick="Open">
+            @Localizer.STR_BUTTON_ABOUT
+        </button>
+    </div>
+</div>
+
+<div style="min-height: 500px; @modalDisplay;" class="modal @modalClass" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" @onclick="Close" aria-label="Close">
+                    <span aria-hidden="true" style="font-size: 2em;">&times;</span>
+                </button>
+                <div class="modal-title">@Localizer.STR_BUTTON_ABOUT</div>
+            </div>
+            <div class="modal-body container" style="width: 100%; max-height: 70vh; overflow-y: auto;">
+                <div style="padding-left: 15px; padding-right: 15px;">
+                    @*<test-about #toolabout></test-about>*@
+                    <About></About>
+                    @*TODO*@
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button @onclick="Close" class='hp-btn secondary'>
+                    @Localizer.STR_BUTTON_BACK
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (showBackdrop)
+{
+    <div class="modal-backdrop fade @modalClass" style="@modalDisplay"></div>
+}
+
+@code {
+    private string modalDisplay = "display:none;";
+    private string modalClass = "";
+    private bool showBackdrop = false;
+
+    public async Task Open()
+    {
+        modalDisplay = "display:block;";
+        await Task.Delay(100);
+        modalClass = "display:show";
+        showBackdrop = true;
+    }
+
+    public async Task Close()
+    {
+
+        modalClass = "";
+        await Task.Delay(250);
+        modalDisplay = "none";
+        showBackdrop = false;
+    }
+
+    bool isUwp = true;
+
+    void zoomLevelChanged(int value)
+    {
+        // TODO Is Zoom still supported?
+        //        if (value > 0)
+        //        {
+        //            const zoomInOp = this.windowService.zoomIn();
+        //            zoomInOp.subscribe((res: any) => { });
+        //}
+        //else if (value< 0)
+        //{
+        //    const zoomOutOp = this.windowService.zoomOut();
+        //zoomOutOp.subscribe((res: any) => { });
+    }
+
+    void openHpWebsite()
+    {
+         Model.PopBrowseHpDiagnosticsWebsite();
+    }
+
+    @*declare var $: any;
+
+        export class ToolbarComponent implements OnInit
+        {
+        @ViewChild('childModal') childModal: any;
+        @ViewChild('toolabout')toolAbout: TestAboutComponent;
+        applicationName: string;
+        applicationPurpose: string;
+        versionName: string;
+
+
+        constructor(
+        @Inject(DI_WINDOWSERVICE) private windowService: IWindowService,
+        private localizationService: LocalizationService,
+        private route: ActivatedRoute,
+        @Inject(DI_SETTINGSSERVICE) private settingsService: ISettingsService,
+        @Inject(DI_WEBAPISERVICE) private webApiService: IWebApiService) {
+        this.webApiService.exceptionRaised$.subscribe(this.exceptionMessageListener.bind(this));
+        const checkUwp = windowService.isUwp().subscribe(isUwp =>
+        {
+        this.isUwp = isUwp;
+        },
+        error =>
+        {
+        console.log(error);
+        },
+        () =>
+        {
+        // checkUwp.unsubscribe();
+        });
+        }
+
+        ngOnInit()
+        {
+        this.getVersionName();
+        }
+
+        ngAfterViewInit()
+        {
+        this.DocElementListenToEnterKey("zoomin");
+        this.DocElementListenToEnterKey("zoomout");
+        }
+
+        DocElementListenToEnterKey(docElement: string)
+        {
+        var s = document.getElementById(docElement);
+        if (s != null)
+        {
+        s.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+        s.click();
+        }
+        });
+        }
+        }
+
+        exceptionMessageListener(exMessage: string) { }
+
+
+
+        getApplicationName() : void {
+        this.settingsService.getApplicationName().subscribe(
+        (applicationName: string) => this.applicationName = applicationName);
+        }
+
+        getVersionName() : void {
+        this.settingsService.getVersionInfo().subscribe(
+        (versionName: string) => this.versionName = versionName);
+        }
+
+        getApplicationPurpose() : void {
+        this.settingsService.getApplicationPurpose().subscribe(
+        (applicationPurpose: string) => this.applicationPurpose = applicationPurpose);
+        }
+
+
+
+
+        }*@
+
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        LocalizeContext.PropertyChanged += (sender, args) => StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        LocalizeContext.PropertyChanged -= (sender, args) => StateHasChanged();
+    }
+}

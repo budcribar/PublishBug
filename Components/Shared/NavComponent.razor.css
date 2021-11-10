@@ -1,0 +1,184 @@
+﻿
+.navbar-default {
+    background-color: #0096d6;
+}
+
+.main-menu.narrow-menu {
+    min-height: 595px;
+    z-index: 1000;
+    background-color: #0096d6;
+}
+
+.nav-text:hover {
+    color: white;
+}
+
+.nav-text {
+    font-weight: bold;
+}
+
+.main-menu.narrow-menu a .nav-text {
+    text-align: left;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.main-menu.narrow-menu a.disabled, .main-menu.wide-menu a.disabled,
+.main-menu.narrow-menu a.disabled:hover, .main-menu.wide-menu a.disabled:hover,
+.main-menu.narrow-menu a.disabled .nav-text:hover, .main-menu.wide-menu a.disabled .nav-text:hover   {
+    color: rgba(255, 255, 255, .5);
+    text-shadow: none;
+    cursor: not-allowed;
+}
+
+.main-menu.narrow-menu a {
+    width: 100%;
+    display: block;
+}
+
+li {
+    padding: 0.0625em 1em;
+}
+
+ul li, ol li {
+    line-height: 1.1em;
+    font-size: 1em;
+}
+
+ul {
+    list-style: none;
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.nav-text.glyphicon {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+.main-menu.narrow-menu a, .main-menu.wide-menu a {
+    color: #d7e9fc;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.main-menu.narrow-menu a:hover, .main-menu.wide-menu a:hover {
+  color: whitesmoke;
+}
+
+.main-menu-nav {
+    padding: 10px 0 10px 0;
+    border-top: .06em solid #71b2de;
+    /*border-bottom: .06em solid #71b2de;*/
+}
+
+.standard-menu-item:hover {
+   text-shadow: 0px 0px 0.05em rgba(255,255,255,1);
+}
+
+@@media (max-height: 758px) {
+
+  .main-menu.narrow-menu .main-menu-nav a.standard-menu-item:before {
+    top: 0.7em;
+    font-size: 1.5em;
+  }
+}
+
+.main-menu.narrow-menu a:before {
+
+    top: 1.3em;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    font-size: 2em;
+}
+
+a {
+    color: #dfe0e6;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    padding: .5em .6em;
+}
+
+.bottom-nav-group {
+    padding: 0;
+}
+
+.spoticon-search-32:before {
+    content: "\f141";
+    font-size: 2em;
+}
+
+.main-menu.narrow-menu .logo {
+    display: block;
+    cursor: auto;
+    margin: auto;
+}
+
+@@media (max-height: 758px) {
+  .main-menu.narrow-menu .logo {
+    width: 90px;
+    height: 90px;
+  }
+  
+  ul.main-menu-nav li:first-child() {
+    margin-top: 0;
+  }
+}
+
+.logo-container {
+    height: 3.4em;
+    width: 4.2em;
+    padding: .1em;
+}
+
+nav {
+    border-color: transparent;
+}
+
+.text-hp-blue {
+    color: #0096d6
+}
+
+.nav-item.active {
+    background-color: white;
+}
+
+.nav-item.active > a > span,
+.nav-item.active > #task-scheduler span {
+    color: #2086bf;
+}
+
+#task-scheduler {
+    display: flex;
+}
+
+.nav-item .task-indicator {
+    border: solid #666 1px;
+    border-radius: 50%;
+    display: inline-block;
+    height: 10px;
+    margin: auto;
+    width: 10px;  
+}
+
+.nav-item .task-indicator.disabled {
+    background-color:red;
+}
+
+.nav-item .task-indicator.enabled {
+    background-color:limegreen;
+}
+
+.nav-item .task-indicator.new {
+    border-bottom: 18px solid orange;
+    border-left: 8px solid transparent;
+    border-radius: 0;
+    border-right: 8px solid transparent;
+    border-top: transparent;
+    height: 0;
+    width: 0;
+}

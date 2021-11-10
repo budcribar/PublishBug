@@ -1,0 +1,39 @@
+﻿.test-result {
+    width: calc(25% - 15px);
+    background-color: #0096d6;
+    min-width: 200px;
+    height: 150px;
+}
+
+.tile-area {
+    padding-top: 20px;
+}
+
+.tile-label {
+    padding-bottom: 8px;
+    font-size: 22px;
+}
+
+.icon {
+    padding-bottom: 15px;
+}
+
+.tile-square:hover {
+    outline-color: #5bceff;
+}
+
+.info-tab-list {
+    display: flex;
+    justify-content: center;
+    -webkit-padding-start: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.system-info-container {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 100%;
+    margin: 1em 0;
+}

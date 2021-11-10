@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6</TargetFramework>
+    <DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
+    <Nullable>enable</Nullable>
+    <LangVersion>9</LangVersion>
+    <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
+    <DebugType Condition="'$(Configuration)' != 'Debug'">None</DebugType>
+    <DebugSymbols Condition="'$(Configuration)' != 'Debug'">False</DebugSymbols>
+ 
+ 
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HPI.FrameworkAbstractions">
+      <HintPath>..\HPI.FrameworkAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="HPI.Logger.Abstractions">
+      <HintPath>..\HPI.Logger.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="HPI.Tool.Abstractions">
+      <HintPath>..\HPI.Tool.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

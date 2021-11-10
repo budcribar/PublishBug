@@ -1,0 +1,42 @@
+@page "/language"
+@inject NavigationManager NavigationManager
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject Dictionary<string, KeyValuePair<string, string>> SupportedLanguages
+@inject ClientInterfaces.ILocalizeContext LocalizeContext
+
+<div class='page-container-flex bg-white flex column-container'>
+    <div class="page-header-container">
+        <div class="primary-section-header-24">
+            @Localizer.STR_TITLE_LANGUAGE_SELECTION
+        </div>
+    </div>
+    <div class="top">
+        <!-- Application Page Description/Instructions Container -->
+        <span>@Localizer.STR_HELP_LANGUAGE_PROMPT</span>
+    </div>
+    <div class="content">
+        <!-- Application Page Content (Tables, Controls, Input) Container -->
+        <div class="inner">
+            <div class="language-list">
+                @foreach (var language in langList)
+                {
+                    <div id="@language" tabindex="0" @onkeyup="(e) => CheckForEnter(e, language)" @onclick="(e) => selectLanguage(e, language)" class="hp-checkbox-container">
+
+                        <span class="flex center pointer" style="margin-right: 0.5em; margin-bottom: 0.5em;">
+                            <i class=@("fa " + (language == LocalizeContext.Language ? "fa-check-square" : "fa-square-o") + (isExecuting ? "disabled" : "") ) aria-hidden="true"></i>
+                        </span>
+
+                        <span class=@(language == LocalizeContext.Language ? "selected-language" : "")>@language</span>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <a class='hp-btn secondary' @onclick='() => NavigationManager.NavigateTo("")'>
+            <span class="nav-text">@Localizer.STR_BUTTON_BACK</span>
+        </a>
+    </div>
+</div>
+

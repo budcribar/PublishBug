@@ -1,0 +1,94 @@
+﻿
+@inject NavigationManager NavigationManager
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject ClientInterfaces.ILocalizeContext LocalizeContext
+@inject AppSettings Settings
+
+@*No such image
+*@
+<!--
+  // TODO    
+<style>
+  .schedule-active {
+    background: transparent url("../images/activeOn.png") no-repeat fixed right center !important;
+  }
+
+  .schedule-inactive {
+    background: transparent url("../images/inactiveOffRed.png") no-repeat fixed right center !important;
+  }
+</style>-->
+
+<nav class="navbar navbar-default" style='border: none;'>
+    <div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="main-menu narrow-menu" id="bs-example-navbar-collapse-1" style='padding-top: 0;'>
+            <div class="logo-container" aria-hidden="true">
+                <img href="/" id="logo" src='data:image/png;base64,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' style="width: 100%; padding-left: 1em;">
+            </div>
+
+            <ul class="main-menu-nav">
+                <li class=@("nav-item" + NavigationManager.Uri =="" ? "active" : "" )>
+                    <a role="button" class="standard-menu-item" @onclick='() => NavigationManager.NavigateTo("")'>
+                        <span class="nav-text">@Localizer.STR_BUTTON_MAIN_MENU</span>
+                    </a>
+                </li>
+                <li class=@("nav-item" + NavigationManager.Uri == "/systeminformation" ? "active" : "")>
+                    <a role="button" class="standard-menu-item" @onclick='() => NavigationManager.NavigateTo("systeminformation")'>
+                        <span class="nav-text">@Localizer.STR_SYSINFO_TITLE</span>
+                    </a>
+                </li>
+                <li class=@("nav-item" + NavigationManager.Uri == "/systemTests" ? "active" : "")>
+                    <a role="button" class="standard-menu-item" @onclick='() => NavigationManager.NavigateTo("systemTests")'>
+                        <span class="nav-text">@Localizer.STR_BUTTON_SYSTEM_TESTS</span>
+                    </a>
+                </li>
+                <li class=@("nav-item" + NavigationManager.Uri == "/componentTests" ? "active" : "")>
+                    <a role="button" class="standard-menu-item" @onclick='() => NavigationManager.NavigateTo("componentTests")'>
+                        <span class="nav-text">@Localizer.STR_BUTTON_COMPONENT_TESTS</span>
+                    </a>
+                </li>
+                <li class=@("nav-item" + NavigationManager.Uri == "/logs" ? "active" : "")>
+                    <a role="button" class="standard-menu-item" @onclick='() => NavigationManager.NavigateTo("logs")'>
+                        <span class="nav-text">@Localizer.STR_BUTTON_TEST_LOGS</span>
+                    </a>
+                </li>
+                <li class=@("nav-item" + NavigationManager.Uri == "/language" ? "active" : "")>
+                    <a role="button" class="standard-menu-item" @onclick='() => NavigationManager.NavigateTo("language")'>
+                        <span class="nav-text">@Localizer.STR_TITLE_LANGUAGE_SELECTION</span>
+                    </a>
+                </li>
+                <li class=@("nav-item" + NavigationManager.Uri == "/taskscheduler" ? "active" : "")>
+                    <a role="button" class="standard-menu-item" @onclick='() => NavigationManager.NavigateTo("taskscheduler")'>
+                        <span class="nav-text">@Localizer.TS_AutomatedScans</span>
+                    </a>
+                </li>
+                <li class=@("nav-item" + NavigationManager.Uri == "/customerfeedback" ? "active" : "")>
+                    <a role="button" class="standard-menu-item" @onclick='() => NavigationManager.NavigateTo("customerfeedback")'>
+                        <span class="nav-text">@Localizer.STR_CUSTOMER_FEEDBACK_TITLE</span>
+                    </a>
+                </li>
+                @if(Settings.ServerUrl != null || true) {
+                <li class=@("nav-item" + NavigationManager.Uri == "/regression" ? "active" : "")>
+                    <a role="button" class="standard-menu-item" @onclick='() => NavigationManager.NavigateTo("regression")'>
+                        <span class="nav-text">Regression Tests</span>
+                    </a>
+                </li>
+                }
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+  @code {
+      
+    protected override void OnInitialized()
+    {
+       LocalizeContext.PropertyChanged += (sender, args) => StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        LocalizeContext.PropertyChanged -= (sender, args) => StateHasChanged();
+    }
+  }

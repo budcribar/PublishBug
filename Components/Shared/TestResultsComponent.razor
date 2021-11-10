@@ -1,0 +1,140 @@
+﻿@inject NavigationManager NavigationManager
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject LogViewModel model
+@inject ITestLogService TestLogService
+@inject IPassId PassId
+@inject IJSRuntime JSRuntime
+
+@using Components.Shared
+@using Interfaces
+
+@if (Show)
+{
+    <div class='page-container-flex bg-white flex column-container' style="@Style">
+
+        <div class="content">
+            <div class="inner">
+                <div class="top">
+                    @Localizer.STR_RESULT_ESC_MESSAGE_TEST_LOGS
+                </div>
+
+                <div id="testResultsContainer">
+
+                    <table class="hp-table">
+                        <thead>
+                            <tr>
+                                <th>@Localizer.STR_HDDINFO_TYPE</th>
+                                <th>@Localizer.STR_HELP_INSTANCE</th>
+                                <th>@Localizer.STR_ACTION_NEEDED</th>
+                                <th>@Localizer.STR_LOGS_RESULT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var toolResult in toolResults.Select((Value, Index) => new { Value, Index }))
+                            {
+                                <tr data-index=@toolResult.Index>
+                                    <td class="no-wrap">
+                                        @toolResult.Value.ToolName
+                                    </td>
+                                    <td class="no-wrap min-width">
+                                        @(string.IsNullOrEmpty(toolResult.Value.Instance) ?  " - " : toolResult.Value.Instance)
+                                    </td>
+                                    <td class="centered no-wrap min-width">
+                                        @*[ngClass]="{'is-clickable': false}" TODO*@
+                                        @if (!string.IsNullOrEmpty(toolResult.Value.FailureId) && (model.getStateName(toolResult.Value.Result) != "Passed"))
+                                        {
+                                            <div title="null">
+                                                @emptyFailureId
+                                            </div>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(toolResult.Value.FailureId) && (model.getStateName(toolResult.Value.Result) == "Passed"))
+                                        {
+                                            <div title="null">
+                                                @*[ngClass]="{'is-clickable': false}" TODO*@
+                                                <a role="button" class="link" title="null" @onclick="() => popModalMoreInformation(toolResult.Index)"> @Localizer.F30140_Key11 </a>
+                                            </div>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(toolResult.Value.FailureId) && completed[toolResult.Index])
+                                        {
+
+                                            <div title="null">
+                                                @*[ngClass]="{'is-clickable': false}" TODO*@
+                                                <div class="status-text">
+                                                    <span> @Localizer.Completed </span>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(toolResult.Value.FailureId) && !completed[toolResult.Index] && model.isInteractiveTest(toolResult.Value.Id.ToString()))
+                                        {
+                                            <div>
+                                                <a role="button" class="link" title="null" @onclick="() => popModalTroubleshoot(toolResult.Index)"> @Localizer.STR_TROUBLESHOOT </a>
+                                            </div>
+                                        }
+                                        @if (!string.IsNullOrEmpty(toolResult.Value.FailureId) && !completed[toolResult.Index] && !model.isInteractiveTest(toolResult.Value.Id.ToString()))
+                                        {
+                                            <div>
+                                                <a role="button" class="link" title="null" @onclick="() => popModalContactHPSupport(toolResult.Index)"> @Localizer.STR_CONTACT_HP_SUPPORT </a>
+                                            </div>
+                                        }
+                                    </td>
+                                    <td class="centered no-wrap min-width @(model.getStateName(toolResult.Value.Result) == "Failed" ? "failed-test": (model.getStateName(toolResult.Value.Result) == "Passed" ? "passed-test" : "" ))">
+                                        <div class="status-text">
+                                            <span> @model.getLocalizedStateName(toolResult.Value.Result) </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+
+                @if (clickTroubleshoot)
+                {
+                    <div>
+                        <p>@Localizer.STR_CLICK_TROUBLESHOOT</p>
+                    </div>
+                }
+
+                @if (clickContactSupport)
+                {
+                    <div>
+                        <p>@Localizer.STR_CLICK_CONTAC_HP</p>
+                    </div>
+                }
+
+
+                @if (showTestsPassID)
+                {
+                    <div>
+                        <p>PASS ID = @testsPassID</p>
+                    </div>
+                }
+
+                @if (enabledSupport)
+                {
+                    <HpSupportComponent hasInternet="hasInternetConnection"></HpSupportComponent>
+                }
+
+                @if (!string.IsNullOrEmpty(MessageService?.Message))
+                {
+                    <MessageOutputComponent messageContent="message"></MessageOutputComponent>
+                }
+
+            </div>
+        </div>
+
+        <TestResultsDialog @ref=testResultsDialog hasInternetConnection="hasInternetConnection" modalHeader="@Localizer.STR_TROUBLESHOOT" TroubleShootStatusChanged="updateTroubleshootStatus" ContactSupportStatusChanged="updateContactSupportStatus"></TestResultsDialog>
+
+        <div class="bottom">
+            <button @onclick="closeView" class="hp-btn primary">
+                @Localizer.STR_BUTTON_FINISH
+            </button>
+        </div>
+    </div>
+
+}
+

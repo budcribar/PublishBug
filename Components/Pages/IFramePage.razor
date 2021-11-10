@@ -1,0 +1,31 @@
+﻿@page "/iframe/{Page}"
+@layout IFrameLayout
+@inject NavigationManager NavigationManager
+@inject ComponentsLocalizer.LocalizedContent Localizer
+
+<button @onclick='() => NavigationManager.NavigateTo("")' class='hp-btn secondary'>@Localizer.STR_BUTTON_BACK</button>
+<iframe src="@dict[Page]" style="width:100%; height:100%" frameborder="0" allowfullscreen></iframe>
+
+@code {
+	[Parameter]
+	public string Page { get; set; } = "";
+
+	// TODO verify Page
+	public Dictionary<string, string> dict = new Dictionary<string, string> {
+	{ "privacy", "https://www8.hp.com/us/en/privacy/privacy.html" },
+	{ "pcdiags", "https://www.hp.com/go/techcenter/PCDiags" },
+	{ "PopWebPageAudioMicrophoneTroubleshooting", "https://support.hp.com/us-en/document/ish_1659562-1439556-16" },
+	{ "PopWebPageAudioMicrophoneProblems", "https://support.hp.com/us-en/document/c03421813" },
+	{ "PopWebPageAudioNoSoundFromComputer", "https://support.hp.com/us-en/document/c05112033" },
+	{ "PopWebPageAudioNoSoundFromSpeakers", "https://support.hp.com/us-en/document/c04973149" },
+	{ "PopWebPageWebcamDocuments", "https://support.hp.com/us-en/document/c03430151" },
+	{ "PopWebPageKbdTroubleshooting", "https://support.hp.com/us-en/document/c03738933" },
+	{ "PopWebPageWiredKbdTroubleshooting", "https://support.hp.com/us-en/document/c03460546" },
+	{ "PopWebPageWirelessKbdTroubleshooting", "https://support.hp.com/us-en/document/c00006821" },
+	{ "PopWebPageTroubleshootingMouseProblems", "https://support.hp.com/us-en/document/c03385353" },
+	{ "PopWebPageWirelessKeyboardAndMouseConnectionIssues", "https://support.hp.com/us-en/document/c00006821" },
+	{ "PopWebPagePrivacyStatement", "https://www8.hp.com/us/en/privacy/privacy.html" },
+	{ "ContactHpSupport", "https://support.hp.com/us-en/eas/failureid" },
+	{ "BrowseHpDiagnosticsWebsite", "https://www.hp.com/go/techcenter/PCDiags" },
+	};
+}

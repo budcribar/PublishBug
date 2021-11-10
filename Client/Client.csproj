@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6</TargetFramework>
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.2.21480.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.2.21480.10" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0-rc.2.21480.5" />
+
+    <!--<PackageReference Include="HPI.Logger.Abstractions" Version="$(FrameworkVersion)$(CIWILDCARD)" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClientInterfaces\ClientInterfaces.csproj" />
+    <ProjectReference Include="..\Components\Components.csproj" />
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+    <ProjectReference Include="..\Mocks\Mocks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HPI.FrameworkAbstractions">
+      <HintPath>..\HPI.FrameworkAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="HPI.Logger.Abstractions">
+      <HintPath>..\HPI.Logger.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="HPI.SystemAbstractions">
+      <HintPath>..\HPI.SystemAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="HPI.Tool.Abstractions">
+      <HintPath>..\HPI.Tool.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

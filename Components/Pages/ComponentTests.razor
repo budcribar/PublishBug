@@ -1,0 +1,193 @@
+@page "/componentTests"
+@page "/componentTests/{testId}"
+@inject NavigationManager NavigationManager
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject ClientInterfaces.ILocalizeContext Context
+@inject Interfaces.IFrameworkController FrameworkController
+@inject Task LoadTask
+@inject IToolFramework Framework
+@inject IJSRuntime JSRuntime
+
+
+<div class='page-container-flex bg-white column-container'>
+	<div class="page-header-multi-container">
+
+		@if (!IsExecuting || (IsExecuting && !IsCustomTest))
+		{
+			<div class="iteminvisible">
+				<button id="btn-update" class="hp-btn primary">@Localizer.F30140_Key2</button>
+			</div>
+			<div class="primary-section-header-24">
+				@Localizer.STR_BUTTON_COMPONENT_TESTS
+			</div>
+			<div>
+				<button id="btn-update" class="hp-btn primary" aria-hidden="true" @onclick="OpenAboutModal">@Localizer.F30140_Key2</button>
+			</div>
+		}
+
+	</div>
+	<div class="page-header-container">
+		@if (IsExecuting && currentTestExecuting != null && IsCustomTest)
+		{
+
+			<div class="primary-section-header-24">
+				@currentTestExecuting.Name
+			</div>
+
+		}
+	</div>
+
+	@if (!isLoading && !IsExecuting && !testExecutionComplete)
+	{
+		<div class="top">
+			@Localizer.STR_HELP_COMPONENT_TESTS
+			<br />
+			@Click_start_Testing
+			<br />
+			@Localizer.F30140_Key9
+			<br />
+			@Localizer.F30140_Key8
+		</div>
+	}
+
+
+	<!--Component Test Selection Display-->
+	@if (!IsExecuting && !testExecutionComplete)
+	{
+		<div class="content tool-selection-container">
+			<div class="inner" style="overflow-y: scroll;">
+
+				<div class="test-groups">
+
+					@if (isLoading)
+					{
+						<div style="width: 100%;text-align: center;">
+							<span style="width: 100%;text-align: center;">
+								<LoadingComponent Height="150" Width="150"></LoadingComponent>
+							</span>
+							<br />
+							<span class='loading-text flashing-text-animation center-content' style="color: #676767; width: 100%; text-align: center;">
+								@Localizer.STR_HELP_INITIALIZING_DIAGS...
+							</span>
+						</div>
+					}
+
+					<!-- Test Group Root -->
+					@foreach (var uiEntry in masterTestList)
+
+						if (!IsExecuting)
+						{
+							<div class="test-group list-group list-group-root">
+
+								@*Group display entry*@
+
+								<div class="list-group-item list-group-header">
+
+									@*Expand Button to show Group tool list*@
+									@if (uiEntry.Tools.Count() > 0)
+									{
+										<span class='no-select expand-collapse-container pointer' @onkeyup='(e) => CheckForEnter(e,() => uiEntry.isExpanded = !uiEntry.isExpanded)' @onclick=@(() => uiEntry.isExpanded = !uiEntry.isExpanded)>
+											
+											<i id="@(uiEntry.Name+"xx2")" tabindex="0" class="fa component-test-checkbox @(uiEntry.isExpanded ?"fa-minus-square-o" : "fa-plus-square-o" )" aria-hidden="true"></i>
+										</span>
+									}
+
+									@*Group Name Display Field*@
+									<span id="@(uiEntry.Name+"x1")" tabindex="0" @onkeyup='(e) => CheckForEnter(e,() => uiEntry.isExpanded = !uiEntry.isExpanded)' @onclick="@(() => uiEntry.isExpanded = !uiEntry.isExpanded)" class='test-list-label group expandable'>
+										@uiEntry.Name
+									</span>
+								</div>
+
+								@*Group Tool List Display Root*@
+
+								@if (uiEntry.isExpanded)
+								{
+									<div class="list-group test">
+										@foreach (var test in uiEntry.Tools)
+										{
+											<div>
+
+												@*Tool Display Entry*@
+												<div @onclick="@(() => selectTest(test, !test.IsSelected, true))" class="list-group-item @(test.Instances?.Count() > 0 ? "" : "no-children" )">
+
+													@*Expand Button if Test has 1 or more instances*@
+													@if (test.Instances?.Count() > 0)
+													{
+														<span @onkeyup='(e) => CheckForEnter(e,() => test.IsExpanded = !test.IsExpanded)' @onclick="@(() => test.IsExpanded = !test.IsExpanded)" class='no-select expand-collapse-container pointer'>
+															<i id="@(test.Name+"tt1")" tabindex="0" class="fa component-test-checkbox  @(test.IsExpanded ? "fa-minus-square-o" : "fa-plus-square-o")" aria-hidden="true"></i>
+														</span>
+													}
+
+													@*Checkbox to toggle test and instance selections for tool*@
+													<span class="center pointer @(test.Instances?.Count() == 0 ? "no-instances": "")">
+														@* TODO (ngInit)="DocElementListenToEnterKey(test.name+'ut1');"*@
+														<i id="@(test.Name+"ut1")" tabindex="0" class="fa component-test-checkbox @(IsExecuting ? "disabled" : "") @(test.IsSelected ? "fa-check-square" : "fa-square-o")" aria-hidden="true"></i>
+													</span>
+
+													@*Test name display field*@
+													<span id="@(test.Name+"t2")" tabindex="0" @onkeyup='(e) => CheckForEnter(e,() => test.IsExpanded = !test.IsExpanded)' @onclick=@(() => test.IsExpanded = !test.IsExpanded) style="font-size: 1.1em;" class="center test-list-label test @(test.IsSelected ? "selected-test" :"select-text") @(test.Instances?.Count() > 0 ? "expandable" : "")">
+														@test.Name @(test.Instances?.Count() > 0 ? "(" + test.Instances?.Count() + ")" : "")
+													</span>
+												</div>
+
+												@*Tool Instance list display root*@
+												@if (test.IsExpanded)
+												{
+													<div class="list-group instance column @(test.IsExpanded ? "" : "hidden")">
+
+														@foreach (var instance in test.Instances!)
+														{
+															<div class="list-group-item instance">
+
+																@*Checkbox to toggle test instance display entry selection*@
+																<span class="center pointer"  @onkeyup='(e) => CheckForEnter(e,() => selectTestInstance(instance, test, !instance.isSelected))' @onclick="@(() => selectTestInstance(instance, test, !instance.isSelected))">
+																	<i id="@("Instance" + test.Name+ instance.id)" tabindex="0" class="fa component-test-checkbox @(IsExecuting ? "disabled" : "") @(test.IsSelected ? "fa-check-square" : "fa-square-o")" aria-hidden="true"></i>
+																</span>
+
+																@*Instance name display field*@
+																<span class="test-list-label instance @(test.IsSelected ? "selected-test" :"select-text")">
+																	@instance.id
+																</span>
+															</div>
+														}
+
+													</div>
+												}
+											</div>
+										}
+									</div>
+								}
+
+							</div>
+						}
+
+				</div>
+
+			</div>
+		</div>
+	}
+
+	@if (!IsExecuting && !testExecutionComplete)
+	{
+		<div class="bottom">
+			<a class='hp-btn secondary' @onclick='() => NavigationManager.NavigateTo("")'>
+				<span class="nav-text">@Localizer.STR_BUTTON_BACK</span>
+			</a>
+			&nbsp;&nbsp;
+			@if (hasTestsSelected && !IsExecuting)
+			{
+				<button class='hp-btn critical' @onclick="ExecuteComponentTests">
+					@Localizer.F30140_Key7
+				</button>
+			}
+		</div>
+	}
+
+	<TestDescriptionDialog @ref=childModal></TestDescriptionDialog>
+	@*Test Execution and Display Components*@
+	<DefaultComponentTestComponent @ref=defaultComponent show="@(IsExecuting&&!IsCustomTest)"  onStart="handleTestStart" onComplete="handleTestComplete" onCancelled="handleTestCancelled"> </DefaultComponentTestComponent>
+	<CustomComponentTestComponent @ref=customComponent show="@(IsExecuting&&IsCustomTest)" onStart="handleTestStart" onComplete="handleTestComplete" onCancelled="handleTestCancelled"> </CustomComponentTestComponent>
+	<TestResultsComponent @ref=testResultsComponent Show="testExecutionComplete" testList="executionTestList" isCancelled="_isCancelled" onCloseView="onTestResultViewClosed"></TestResultsComponent>
+	
+</div>
+

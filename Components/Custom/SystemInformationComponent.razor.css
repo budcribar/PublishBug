@@ -1,0 +1,37 @@
+.param-container {
+    padding-bottom: .5em !important;
+}
+
+.param-key {
+    font-size: 1em;
+    color: rgb(68, 68, 68);
+    padding: 0;
+    flex: 1;
+    font-weight: bold;
+}
+
+.param-key > span, .param-key > div {
+    font-family: inherit;
+}
+
+.param-value {
+    font-size: 1em;
+    color: #1c3742;
+    padding: 0;
+}
+
+.data-row {
+    border-bottom: 2px solid #e4e6e8;
+    margin-left: .1em;
+    margin-right: .1em;
+}
+
+h3 {
+    color: #0096d6;
+}
+
+h3.system-info-header {
+    font-weight: bold; 
+    margin-left: 0; 
+    margin-right: 0;
+}

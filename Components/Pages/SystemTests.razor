@@ -1,0 +1,172 @@
+@page "/systemTests"
+@inject NavigationManager NavigationManager
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject LogViewModel model
+@inject IToolFramework Framework
+@inject Interfaces.IFrameworkController FrameworkController
+@inject Task LoadTask
+
+<div class='page-container-flex bg-white column-container'>
+
+	<div class="page-header-container">
+		@if (!IsExecuting || (IsExecuting && !IsCustomTest))
+		{
+			<div class="primary-section-header-24">
+				@Localizer.STR_BUTTON_SYSTEM_TESTS
+			</div>
+		}
+
+		@if (IsExecuting && currentTestExecuting != null && IsCustomTest)
+		{
+			<div style="text-align: center;" class="primary-section-header-24">
+				@currentTestExecuting.Name
+			</div>
+		}
+	</div>
+
+	@if (!IsExecuting && !testExecutionComplete)
+	{
+		<div class="content" style="border-top: none;">
+			<div class="inner">
+				<div class="system-test-container">
+					@if (isLoading)
+					{
+						<div style="width: 100%;text-align: center;">
+							<LoadingComponent Width="150" Height="150" />
+
+							<br />
+							<span class='loading-text flashing-text-animation center-content' style="color: #676767; width: 100%; text-align: center;">
+								@Localizer.STR_HELP_INITIALIZING_DIAGS...
+							</span>
+						</div>
+					}
+
+					<div class="center-content">
+						<div class="tab-content">
+							<ul class="info-tab-list">
+								@foreach (var view in testViews)
+								{
+									<li tabindex="0" id="@view.Name" @onclick="() => selectTestView(view)" class="@(view.Name == selectedTestView?.Name ? "active": "")">
+										<span style="font-weight: bold; line-height:120%;">@view.Name</span>
+									</li>
+								}
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				@if (selectedTestView != null)
+				{
+					<div class="page-content-container">
+						<div style="display: flex; flex-direction: column; overflow-x: auto;">
+							<table style="border:0; width:100%;">
+								<tr>
+									<td>
+										<div class="description-text">
+											@if (selectedViewInstructions != null)
+											{
+												<div>
+													@((MarkupString)selectedViewInstructions)
+												</div>
+											}
+
+										</div>
+										<br />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<table class="hp-table">
+											<thead>
+												<tr>
+													@if (!selectedTestView.isView)
+													{
+														<th>Group</th>
+														<th tabindex="0" @onclick="() => toggleViewsTestSelections(selectedTestView)">
+															<span class="flex center pointer pointer">
+
+																<i class=@("fa " + (IsExecuting ? "disabled " :" ") + (isMasterSelectChecked ? "fa-check-square" : "fa-square-o")) style="font-size: 1.3em; color: white !important;" aria-hidden="true"></i>
+															</span>
+														</th>
+													}
+
+													<th>@Localizer.STR_BUTTON_SYSTEM_TESTS</th>
+													<th>@Localizer.STR_LOGS_DESCRIPTION</th>
+													<th>@Localizer.STR_LOGS_RESULT</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach (var tool in selectedTestView.Tools)
+												{
+													<tr class="hp-table-row">
+														@if (!selectedTestView.isView)
+														{
+															<td class="no-wrap min-width align-top grouping">
+																@tool.GroupName
+															</td>
+															<td class="min-width no-wrap align-top" tabindex="0" @onclick="() => selectTest(tool, !tool.IsSelected, true)">
+																<span class="flex center pointer pointer">
+																	<i style="font-size: 1.3em;" class="fa @(IsExecuting || selectedTestView.isView ? "disabled" : (tool.IsSelected ? "fa-check-square" : "fa-square-o" ))" aria-hidden="true"></i>
+																</span>
+															</td>
+														}
+
+														<td class="min-width no-wrap align-top">
+															@tool.Name
+														</td>
+														<td class="align-top" style="white-space: normal !important;">
+															@if (tool.Instructions != null)
+															{
+																<span class="link-text" id="@(selectedTestView.Name+tool.Name)" tabindex="0" @onkeyup='(e) => CheckForEnter(e,() => tool.IsInstructionsShown = !tool.IsInstructionsShown)' @onclick="()=>tool.IsInstructionsShown = !tool.IsInstructionsShown">
+																	@(tool.IsInstructionsShown ? @Localizer.STR_HELP_HIDE_DESC: @Localizer.STR_HELP_SHOW_DESC)
+																</span>
+															}
+
+															@if (tool.IsInstructionsShown)
+															{
+																<span>@tool.Description</span>
+															}
+
+														</td>
+														<td class=@("min-width no-wrap align-top centered" + model.getStateName(tool.State) == "Failed" ? "table-danger" : (model.getStateName(tool.State) == "Passed" ? "table-success" : (model.getStateName(tool.State) == "Cancelled" ? "table-warn" : "")))>
+															@model.getLocalizedStateName(tool.State)
+														</td>
+													</tr>
+												}
+
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				}
+
+			</div>
+		</div>
+	}
+
+	@if (!IsExecuting && !testExecutionComplete)
+	{
+		<div class="bottom">
+			@if (hasTestsSelected && !IsExecuting)
+			{
+				<button class='hp-btn critical' @onclick="executeComponentTests">
+					@Localizer.F30140_Key7
+				</button>
+			}
+			&nbsp;&nbsp;
+			<a class='hp-btn secondary' @onclick='() => NavigationManager.NavigateTo("")'>
+				<span class="nav-text">@Localizer.STR_BUTTON_BACK</span>
+			</a>
+
+		</div>
+	}
+
+	<DefaultComponentTestComponent @ref=defaultComponent Show="@(IsExecuting&&!IsCustomTest)" onStart="handleTestStart" onComplete="handleTestComplete" onCancelled="handleTestCancelled"> </DefaultComponentTestComponent>
+	<CustomComponentTestComponent @ref=customComponent Show="@(IsExecuting&&IsCustomTest)" onStart="handleTestStart" onComplete="handleTestComplete" onCancelled="handleTestCancelled"> </CustomComponentTestComponent>
+	<TestResultsComponent Style="display: flex; flex-direction: column;" @ref=testResultsComponent Show="testExecutionComplete" testList="executionTestList" TestID="GetTestID()" isCancelled="_isCancelled" onCloseView="onTestResultViewClosed"></TestResultsComponent>
+</div>
+
+

@@ -1,0 +1,6 @@
+@inject NavigationManager NavigationManager
+@inject ComponentsLocalizer.LocalizedContent Localizer
+
+<div style="margin-bottom: 1em; margin-top: 1em;">
+    <span class="link" role="link" id="helpurl" tabindex="0" @onclick="openHpWebsite">@Localizer.STR_HELP_URL2.Replace("%s", "www.hp.com/go/techcenter/PCDiags")</span>
+</div>

@@ -1,0 +1,76 @@
+@using ClientInterfaces
+@using Components.Shared
+@using Microsoft.JSInterop
+@using ToolFrameworkPackage
+@using Interfaces
+@inherits ComponentTest
+@inject Dictionary<string, KeyValuePair<string, string>> SupportedLanguages
+@inject ClientInterfaces.ILocalizeContext LocalizeContext
+@inject IMainWindow Window
+
+@if (Show)
+{
+    @if(Fragment == null)
+    {
+        <div class="custom-component-container">
+        @((MarkupString)testHtmlString)
+        </div>
+    } else
+    {
+         @Fragment
+    }
+    
+     <div class="modal @modalClass" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="@modalDisplay">
+        @if (promptOptions != null)
+        {
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            <div class="header3">@(promptOptions?.title ?? "")</div>
+                        </div>
+                    </div>
+                    <div class="modal-body container">
+                        <div id="promptContent" class="modal-body container" style="width: 100%; max-height: 70vh; overflow-y: auto;">
+                            <div class="log-text-container">
+                                @((MarkupString)promptOptions!.promptContent)
+                            </div>
+                        </div>
+
+                        @if (!promptOptions?.inputHtmlOption?.hidden ?? false)
+                        {
+                            <div>
+                                @*[(type)]="promptOptions.inputHtmlOption.type"> TODO *@
+                                <input class="form-control2" id="password-field" @bind="promptOptions!.inputHtmlOption.value" placeholder="promptOptions.inputHtmlOption.placeholder">
+                                <span style="padding-top: 7%;@(LTR ? "float:right":"float:left")" toggle="#password-field" @onclick="showOrHidePassword" class="@getClass()"></span>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="modal-footer modal-button-footer">
+                        @if (promptOptions?.noPromptOption != null)
+                        {
+                            <button @onclick="() => testPromptResultClick(false)" class="hp-btn secondary" style="margin-right: .5em;">
+                                @(promptOptions.noPromptOption?.text ?? "")
+                            </button>
+                        }
+
+                        @if (promptOptions?.yesPromptOption != null)
+                        {
+                            <button @onclick="() => testPromptResultClick(true)" class="hp-btn primary">
+                                @(promptOptions.yesPromptOption ?.text ?? "")
+                            </button>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+   
+    @if (showBackdrop)
+    {
+        <div class="modal-backdrop fade @modalClass" style="@modalDisplay"></div>
+    }
+}
+

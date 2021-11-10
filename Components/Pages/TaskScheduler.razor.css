@@ -1,0 +1,86 @@
+#page-mask {
+    background: #000;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1100;
+}
+
+#task-scheduler-window {
+    background: #fff;
+    border: solid #565656 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 50%;
+    position: fixed;
+    top: 5%;
+    transform: translate(-50%);
+    width: 70%;
+    z-index: 1105;
+}
+
+    #task-scheduler-window .loading {
+        display: flex;
+    }
+
+        #task-scheduler-window .loading img {
+            margin: auto;
+        }
+
+#task-scheduler-body {
+    padding: 0 1em 1em;
+}
+
+#section-title {
+    display: flex;
+    flex-direction: column;
+}
+
+    #section-title h1,
+    #section-title h2 {
+        line-height: 1em;
+        font-weight: bold;
+        margin: 0 0 .25em 0;
+    }
+
+#task-scheduler-window #section-title h1 {
+    font-size: 1.25em !important;
+}
+
+#task-scheduler-window #section-title h2 {
+    font-size: 1.65em !important;
+}
+
+#title-bar {
+    background: #0096d6;
+    border-bottom: solid #007db3 1px;
+    margin: 0 0 .75em;
+    /*padding: .5em 1em 0;*/
+    width: 100%;
+}
+
+#hp-pc-diags {
+    color: #fff;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    width: 100%;
+}
+
+.centered {
+    text-align: center;
+}
+
+#task-scheduler-window .no-wrap {
+    display: inline-block !important;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap !important;
+}

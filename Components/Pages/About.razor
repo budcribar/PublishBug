@@ -1,0 +1,67 @@
+@page "/about"
+@inject NavigationManager NavigationManager
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject LogViewModel Model
+@inject ISystemInfo SystemInfo
+
+<div id='about-window'>
+    @if (isLoading)
+    {
+      <LoadingComponent />
+    }
+    else
+    {
+        <div id="about-content">
+            <div id="section-title">
+                <div id="title-bar">
+                    <div class="header2" id="hp-pc-diags">HP PC Hardware Diagnostics Windows</div>
+                </div>
+            </div>
+            <div id="about-body">
+                <div id="main-message">
+                    <p>@Localizer.ApplicationPurpose</p>
+                    <br />
+                    <p>@versionName</p>
+                    <br />
+                    <button id="btn-save-logs" class="hp-btn primary" style="font-size: 1em; height:auto; line-height:normal;" aria-hidden="true" @onclick="exportLogs">@Localizer.STR_SAVE_LOGS</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div id="page-mask"></div>
+
+@code {
+  
+    string versionName = "";
+    bool isLoading = true;
+
+    void exportLogs()
+    {
+        // TODO Do we need to export logs?
+        //isLoading = true;
+        //Model.ExportLogs();
+        //isLoading = false;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {        
+        isLoading = false;
+        versionName = SystemInfo?.ApplicationVersion.ToString() ?? "";
+        // TODO check if no history records
+
+        await base.OnInitializedAsync();
+    }
+
+    /*
+     * 
+     * TODO Do we need to have windows update in about?
+    windowsUpdate() {
+        this.testService.windowsUpdate();
+    }
+
+    runBiosUpdate() {
+        this.navigate('/biosUpdate');
+    }
+    */
+}

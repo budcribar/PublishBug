@@ -1,0 +1,328 @@
+@page "/taskscheduler"
+@inject NavigationManager NavigationManager
+@inject ComponentsLocalizer.LocalizedContent Localizer
+
+
+<div id='task-scheduler-window'>
+    @if (isLoading)
+    {
+        <LoadingComponent/>
+    }
+    else
+    {
+
+        <div id="task-scheduler-content">
+            <div id="section-title">
+                <div class="modal-header" id="title-bar">
+                    <div class="modal-title" id="hp-pc-diags">@Localizer.TS_AutomatedScans</div>
+                </div>
+            </div>
+            <div id="task-scheduler-body">
+                <div>
+                    @* <table style="border:hidden; width:100%; margin: auto;">
+                        <tr *ngIf="TaskSmartCheckTest !== null" style="border:hidden; padding: 10px;">
+                        <td style="border:hidden; padding: 10px;"><span class="log-text-container"><b>@Localizer.SmartCheckTest</b></span></td>
+                        <td *ngIf="!TaskSmartCheckTest.enabled" style="border:hidden; padding: 10px;">@Localizer.Unscheduled</td>
+                        <td *ngIf="TaskSmartCheckTest.enabled" style="border:hidden; padding: 10px;">{{TaskSmartCheckTestMessage</td>
+                        <td *ngIf="!TaskSmartCheckTest.enabled" style="border:hidden; padding: 10px;"><button @onclick='()=>EnableTaskSmartCheckTest(true)' class='hp-btn primary'>@Localizer.TS_Enable</button></td>
+                        <td *ngIf="TaskSmartCheckTest.enabled" style="border:hidden; padding: 10px;"><button @onclick='()=>EnableTaskSmartCheckTest(false)' class='hp-btn critical'>@Localizer.TS_Disable</button></td>
+                        </tr>
+                        <tr *ngIf="TaskBatteryStatusTest !== null && platformService !== null && platformService.platformInfo !== null && platformService.platformInfo.supportsBattery" style="border:hidden; padding: 10px;">
+                        <td style="border:hidden; padding: 10px;"><span class="log-text-container"><b>@Localizer.BatteryStatusTest</b></span></td>
+                        <td *ngIf="!TaskBatteryStatusTest.enabled" style="border:hidden; padding: 10px;">@Localizer.Unscheduled</td>
+                        <td *ngIf="TaskBatteryStatusTest.enabled" style="border:hidden; padding: 10px;">{{TaskBatteryStatusTestMessage}}</td>
+                        <td *ngIf="!TaskBatteryStatusTest.enabled" style="border:hidden; padding: 10px;"><button @onclick='()=>EnableTaskBatteryStatusTest(true)' class='hp-btn primary'>@Localizer.TS_Enable</button></td>
+                        <td *ngIf="TaskBatteryStatusTest.enabled" style="border:hidden; padding: 10px;"><button @onclick='()=>EnableTaskBatteryStatusTest(false)' class='hp-btn critical'>@Localizer.TS_Disable</button></td>
+                        </tr>
+                        <tr *ngIf="TaskFastSystemTests !== null && windowService !== null && !windowService.IsHpsaInstalled" style="border:hidden; padding: 10px;">
+                        <td style="border:hidden; padding: 10px;"><span class="log-text-container"><b>@Localizer.FastSystemTests</b></span></td>
+                        <td *ngIf="!TaskFastSystemTests.enabled" style="border:hidden; padding: 10px;">@Localizer.Unscheduled</td>
+                        <td *ngIf="TaskFastSystemTests.enabled" style="border:hidden; padding: 10px;">{{TaskFastSystemTestsMessage}}</td>
+                        <td *ngIf="!TaskFastSystemTests.enabled" style="border:hidden; padding: 10px;"><button @onclick='()=>EnableTaskFastSystemTests(true)' class='hp-btn primary'>@Localizer.TS_Enable</button></td>
+                        <td *ngIf="TaskFastSystemTests.enabled" style="border:hidden; padding: 10px;"><button @onclick='()=>EnableTaskFastSystemTests(false)' class='hp-btn critical'>@Localizer.TS_Disable</button></td>
+                        </tr>
+                        </table>*@
+                    <br>
+                </div>
+            </div>
+            <div class="modal-footer" style='display:flex; justify-content:space-around; margin:auto; width:100%;'>
+                <button @onclick='() => NavigationManager.NavigateTo("")' class='hp-btn secondary'>
+                    @Localizer.STR_BUTTON_BACK
+                </button>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+<div id="page-mask"></div>
+
+@code {
+    bool isLoading = false;
+    void EnableTaskBatteryStatusTest(bool enabled)
+    {
+        // TODO
+        //if (this.TaskBatteryStatusTest === null)
+        //{
+        //    return;
+        //}
+        //this.TaskBatteryStatusTest.enabled = enabled;
+        //this.getBrowserApi().SetTaskBatteryStatusTest(this.TaskBatteryStatusTest);
+    }
+    void EnableTaskFastSystemTests(bool enabled)
+    {
+        // TODO
+        //let task = this.getBrowserApi().GetTaskFastSystemTests();
+        //if (task !== null)
+        //{
+        //    this.TaskFastSystemTests = task;
+        //    this.TaskFastSystemTestsMessage = this.GetTaskMessageWeeklyTrigger(this.TaskFastSystemTests);
+        //}
+        //if (this.TaskFastSystemTests === null)
+        //{
+        //    return;
+        //}
+        //this.TaskFastSystemTests.enabled = enabled;
+        //this.getBrowserApi().SetTaskFastSystemTests(this.TaskFastSystemTests);
+    }
+    void EnableTaskSmartCheckTest(bool enabled)
+    {
+        // TODO
+        //if (this.TaskSmartCheckTest === null)
+        //{
+        //    return;
+        //}
+        //this.TaskSmartCheckTest.enabled = enabled;
+        //this.getBrowserApi().SetTaskSmartCheckTest(this.TaskSmartCheckTest);
+    }
+
+
+    /*
+    export class TaskSchedulerComponent implements OnInit {
+    @ViewChild('actionModal') actionModal: any;
+
+    public isLoading = true;
+    public locale: string = 'en-us';
+    public modalActive = false;
+
+    TaskBatteryStatusTest: TaskData = new TaskData();
+    TaskSmartCheckTest: TaskData = new TaskData();
+    TaskFastSystemTests: TaskData = new TaskData();
+    public mainMessage: string[] = [];
+
+    TaskBatteryStatusTestMessage = this.localize().Unscheduled;
+    TaskSmartCheckTestMessage = this.localize().Unscheduled;
+    TaskFastSystemTestsMessage = this.localize().Unscheduled;
+
+        constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private localizationService: LocalizationService,
+        @Inject(DI_PLATFORMSERVICE) public platformService: IPlatformService,
+        @Inject(DI_WINDOWSERVICE) public windowService: IWindowService,
+        @Inject(DI_WEBBROWSERSERVICE) private browser: IWebBrowserService
+    ) {
+    }
+
+    public ChangeOnDay(): void {
+        return; // TODO: What is this click action?
+    }
+
+    public ChangeRecursEveryWeeksNumber(): void {
+        return; // TODO: What is this click action?
+    }
+
+    public ChangeStartsAt(): void {
+        return; // TODO: What is this click action?
+    }
+
+    localize():  LangDefinition {
+        if (this.localizationService === null || this.localizationService.localize === null) {
+            window.setTimeout(this.localize, 100);
+        }
+        return this.localizationService.localize;
+        }
+
+      getWindowService(): IWindowService {
+    if (this.windowService === null) {
+      window.setTimeout(this.getWindowService, 100);
+    }
+    return this.windowService;
+    }
+
+    getBrowserApi():  IObjectForScripting{
+        if (this.browser === null || this.browser.api === null) {
+            window.setTimeout(this.getBrowserApi, 100);
+        }
+        return this.browser.api;
+    }
+
+        ngOnInit() {
+        this.isLoading = true;
+        const res = this.getWindowService().getLocale().subscribe(
+                response => {
+                this.locale = response;
+                this.InitTasks().subscribe(
+                        x => {
+                        this.isLoading = false;
+                    },
+                        error => {
+                        this.isLoading = false;
+                    },
+                () => {}
+            );
+            },
+                error => {
+                this.locale = 'en-us';
+                this.InitTasks().subscribe(
+                        x => {
+                        this.isLoading = false;
+                    },
+                        error => {
+                        this.isLoading = false;
+                    },
+                () => {}
+            );
+            },
+                () => {
+                // res.unsubscribe();
+        }
+    );
+    }
+
+    InitTasks(): Observable<string> {
+        return of(this.InitTasksX());
+    }
+
+    InitTasksX(): string {
+
+        var task = this.getBrowserApi().GetTaskBatteryStatusTest();
+        if (task !== null)
+            {
+            this.TaskBatteryStatusTest = task;
+            this.TaskBatteryStatusTestMessage = this.GetTaskMessageWeeklyTrigger(this.TaskBatteryStatusTest);
+        }
+
+        task = this.getBrowserApi().GetTaskSmartCheckTest();
+        if (task !== null)
+            {
+            this.TaskSmartCheckTest = task;
+            this.TaskSmartCheckTestMessage = this.GetTaskMessageWeeklyTrigger(this.TaskSmartCheckTest);
+        }
+
+        task = this.getBrowserApi().GetTaskFastSystemTests();
+        if (task !== null)
+            {
+            this.TaskFastSystemTests = task;
+            this.TaskFastSystemTestsMessage = this.GetTaskMessageWeeklyTrigger(this.TaskFastSystemTests);
+        }
+
+    return "";
+    }
+
+
+
+
+    GetTaskMessage(task: TaskData): string {
+        const nextRunTime = this.formatRunTime(task.nextRunTime, this.locale);
+        return this.insertNoWrapDateTime(this.localize().TS_NextScanIsScheduled, nextRunTime);
+    }
+
+    formatRunTime(runTime: string, locale: string): string {
+        const options = {
+            day: 'numeric',
+            month: 'long',
+            weekday: 'long',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        };
+        if (/\d{4,4}-\d{2,2}-\d{2,2}T\d{2,2}:\d{2,2}:\d{2,2}/.test(runTime)) {
+            const runDate = new Date(runTime);
+            return runDate.toLocaleString(locale); // , options);
+        }
+    return runTime;
+    }
+
+    insertNoWrapDateTime(input: string, nextRunTime: string): string {
+        return input.replace('%d', nextRunTime);
+    }
+
+    GetTaskMessageWeeklyTrigger(task: TaskData): string {
+        if (task.weeklyTriggers === null || task.weeklyTriggers.length < 1) {
+            return this.GetTaskMessage(task);
+        }
+        const trigger = task.weeklyTriggers[0];
+        var message: string = this.localize().TaskWeeklyTrigger;
+        if (trigger.weeksInterval > 1) {
+            message = this.localize().TaskWeeklyTriggerInterval;
+            message = message.replace('%weeksInterval%', trigger.weeksInterval.toString());
+        }
+        message = message.replace('%startTime%', this.GetTime(trigger.startTime));
+        message = message.replace('%dayOfWeek%', this.GetDayOfWeek(trigger.daysOfWeek));
+        //KEEP message = message.replace('%startDay%', this.GetDate(trigger.startDay));
+    return message;
+    }
+
+    GetTime(t: string): string {
+        const xd = new Date('1970-01-01T' + t);
+        const options = {
+            hour: 'numeric',
+            minute: 'numeric'
+        };
+        return xd.toLocaleTimeString(this.locale); // , options);
+    }
+
+    GetDate(d: string): string {
+        const xd = this.ParseDate(d);
+        if (xd == null) {
+        return d;
+        }
+        const options = {
+            day: 'numeric',
+            month: 'long',
+        year: 'numeric'
+        };
+        return xd.toLocaleDateString(this.locale); // , options);
+    }
+
+    ParseDate(input: string): Date {
+        let parts = input.split('-');
+        if (parts.length != 3)
+            {
+        return null;
+        }
+        return new Date(parseInt(parts[0]), parseInt(parts[1])-1, parseInt(parts[2])); // Note: months are 0-based
+    }
+
+    GetDayOfWeek(day:number):string {
+        if ((day & 1) == 1) { return this.localize().Sunday; }
+        if ((day & 2) == 2) { return this.localize().Monday; }
+        if ((day & 4) == 4) { return this.localize().Tuesday; }
+        if ((day & 8) == 8) { return this.localize().Wednesday; }
+        if ((day & 16) == 16) { return this.localize().Thursday; }
+        if ((day & 32) == 32) { return this.localize().Friday; }
+        if ((day & 64) == 64) { return this.localize().Saturday; }
+    return '-'
+    }
+
+    navigate(routeLocation: string) {
+        if ( !routeLocation ) {
+        return;
+        }
+        this.router.navigate([routeLocation]);
+    }
+
+    public CloseModal() {
+        this.actionModal.toggle();
+        }
+    }
+
+    class TaskData implements ITaskData {
+    enabled = false;
+    nextRunTime = "2021-01-01T00:00:00";
+    weeklyTriggers?: Array<IWeeklyTrigger> = [];
+    }
+    */
+}

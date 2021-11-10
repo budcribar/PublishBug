@@ -1,0 +1,92 @@
+@inject LogViewModel model
+@inherits ComponentTest
+
+@if (Show)
+{
+	<div class='page-container-flex bg-white flex column-container' style="height: 100%;width: 100%">
+	<div class="content">
+		<div class="inner">
+			<div style="display: flex; justify-content: flex-end; margin-bottom: 1em; width: 100%;">@testIndexAndTotalDisplayText</div>
+			<div style="overflow-x: auto; width: 100%;">
+				<table class="hp-table">
+					<thead>
+						<tr>
+							<th>@Localizer!.STR_HDDINFO_TYPE</th>
+							<th>@Localizer.STR_LOGS_RESULT</th>
+						</tr>
+					</thead>
+					<tbody>
+						@{
+							int i = 0;
+						}
+						@foreach (var test in base.TestList)
+						{
+							<tr class="@( test.Id == selectedTest ? "highlight" : "")" data-index="@i">
+
+								@*DO NOT remove height="100%" it is fixing a stupid IE11 bug*@
+								<td class="no-wrap min-width" height="100%">
+									@test.Name
+								
+									@if(getInstanceName() != null && test.State == State.Running )
+									{
+										<span style="margin-left: 1em;"> (@getInstanceName()) </span>
+									}
+								</td>
+
+								@*DO NOT remove height="100%" it is fixing a stupid IE11 bug*@
+
+								<td class="no-wrap @(model.getStateName(test.State) ==  "Failed" ? "failed-test" : "")" height="100%">
+									@if (test.Id == selectedTest)
+									{
+										<div style="display: flex;">
+											@if (isExecuting)
+											{
+												<div style="flex: 1; margin-right: 1em;">
+													<span>@formatPercentString()</span>
+												</div>
+											}
+
+											<div class="progress" style="flex: 2;">
+												<div class="progress-bar" style="@($"width:{testExecutingRef?.Progress}%")" role="progressbar" aria-valuenow="@(testExecutingRef?.Progress)" aria-valuemin="0" aria-valuemax="100">
+												</div>
+											</div>
+										</div>
+									}
+
+									@if (test.Id != selectedTest)
+									{
+										<div class="status-text" style="display: flex;">
+											<span>
+												@model.getLocalizedStateName(test.State)
+											</span>
+										</div>
+									}
+
+									@if (test.Id == selectedTest && !string.IsNullOrEmpty(additionalInfo))
+									{
+										<div id="additional-info-container">
+											@((MarkupString)additionalInfo)
+										</div>
+									}
+
+								</td>
+							</tr>
+							i++;
+						}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="bottom">
+		@if (isExecuting && !isCancelling && testExecutingRef?.State != State.Cancelled)
+		{
+			<button @onclick="cancelTestExecution" class="hp-btn secondary">
+				@Localizer.STR_BUTTON_CANCEL
+			</button>
+		}
+
+	</div>
+</div>
+}

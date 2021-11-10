@@ -1,0 +1,23 @@
+﻿@page "/regression"
+@inject AppSettings Settings
+@using System.IO
+
+@if(loading)
+{
+<LoadingComponent/>
+}
+
+
+@((MarkupString)testResults)
+
+@code {
+	string testResults = "";
+	bool loading = true;
+
+	protected async override Task OnInitializedAsync()
+	{
+		testResults = await Settings.FunctionalTestResults();
+		loading = false;
+	}
+	
+}

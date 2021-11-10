@@ -1,0 +1,44 @@
+﻿@inject NavigationManager NavigationManager
+@inject ISystemInfo PlatformInfo
+
+<div class='param-container' style="background-color: white;">
+    @if(entry != null)
+    foreach (var subData in entry.Data)
+    {
+        <div class="row padded" style="width: initial; padding-bottom: 1em; display:block">
+
+            @if(!string.IsNullOrEmpty( subData.Key))
+            {
+                  <div class="header3 system-info-header">@subData.Key</div>
+            }
+          
+
+            @foreach (var leafData in subData.Value)
+            {
+                <div class="data-row"  style="display: flex;">
+                    <div class="param-key">
+                        <span class="data-cell">@leafData.Key</span>
+                    </div>
+                    <div class="col-lg-6 param-value">
+                        <span class="data-cell">@leafData.Value</span>
+                    </div>
+                </div>
+            }
+        </div>
+
+    }
+
+</div>
+
+@code
+{
+    [Parameter]
+    public ISystemInfoEntry? entry { get; set; } = null;
+
+    [Parameter]
+    public EventCallback onInfoPageClosed {get;set; }
+
+    //bool isLoading = false;
+
+}
+

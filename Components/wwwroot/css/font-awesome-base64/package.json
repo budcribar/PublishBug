@@ -1,0 +1,26 @@
+{
+  "name": "font-awesome-base64",
+  "description": "Font Awesome icons compiled with base64 embedded font to CSS instead of link to font files",
+  "version": "1.0.4",
+  "main": "index.css",
+  "repository": "git@gitlab.com:tecnos/font-awesome-base64.git",
+  "author": "Alex Bruno Cáceres <git.alexbr@outlook.com>",
+  "license": "MIT",
+  "keywords": [
+    "icons",
+    "font",
+    "awesome",
+    "base64"
+  ],
+  "devDependencies": {
+    "font-awesome": "^4.7.0",
+    "js-yaml": "^3.9.0",
+    "less": "^2.7.2",
+    "less-plugin-clean-css": "^1.5.1",
+    "request": "^2.81.0"
+  },
+  "scripts": {
+    "build": "yarn && node src/list.js && yarn compile",
+    "compile": "lessc --no-ie-compat --clean-css src/index.less index.css"
+  }
+}

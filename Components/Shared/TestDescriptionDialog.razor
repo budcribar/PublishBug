@@ -1,0 +1,55 @@
+﻿@inject ComponentsLocalizer.LocalizedContent Localizer
+
+<div style="@(modalDisplay); min-height: 500px;" class="modal @(modalClass)" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" @onclick="Close" aria-label="Close">
+					<span aria-hidden="true" style="font-size: 2em;">&times;</span>
+				</button>
+				<div class="modal-title">@Localizer.F30140_Key2</div>
+			</div>
+			<div class="modal-body container" style="width: 100%; max-height: 70vh; overflow-y: auto;">
+				<div style="padding-left: 15px; padding-right: 15px;">		
+					<TestDescriptionComponent @ref=toolAbout ></TestDescriptionComponent>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button @onclick="Close" class='hp-btn secondary'>
+					@Localizer.STR_BUTTON_BACK				
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+@if (showBackdrop)
+{
+	<div class="modal-backdrop fade @modalClass" style="@modalDisplay"></div>
+}
+
+
+@code {
+	TestDescriptionComponent? toolAbout;
+	private string modalDisplay = "display:none;";
+	private string modalClass = "";
+	private bool showBackdrop = false;
+	public async Task Open()
+	{
+		this.toolAbout?.loadAboutInfo();
+		modalDisplay = "display:block;";
+		StateHasChanged();
+		await Task.Delay(100);
+		
+		modalClass = "display:show";
+		showBackdrop = true;
+
+	}
+
+	public async Task Close()
+	{
+		modalClass = "";
+		await Task.Delay(250);
+		modalDisplay = "display:none";
+		showBackdrop = false;
+	}
+}

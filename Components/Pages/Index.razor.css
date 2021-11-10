@@ -1,0 +1,52 @@
+﻿
+.home-desc {
+    font-size: 1.3em;
+    /*margin-top: 20px;*/
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.home-suggestion {
+    font-size: 1.3em;
+    /*margin-top: 20px;*/
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.version-info {
+    color: #797878;
+    font-size: 0.9em;
+}
+
+.bottom.style-override {
+    border: none;
+    margin-bottom: 1em;
+    background-color: inherit;
+}
+
+.inner.style-override {
+    align-items: center;
+    margin-top: 2em;
+}
+
+.link {
+    color: #0096d6;
+}
+
+    .link:hover {
+        color: #069;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .link:active {
+        font-weight: bold;
+    }
+
+    .link:visited {
+        color: #0096D6;
+    }

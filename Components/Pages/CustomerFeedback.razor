@@ -1,0 +1,72 @@
+﻿@page "/customerfeedback"
+@using Interfaces
+@inject NavigationManager NavigationManager
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject LogViewModel Model
+@inject IFrameworkController FrameworkController
+
+<div id='customer-feedback-window'>
+    <div id="customer-feedback-content">
+        <div id="section-title">
+            <div class="modal-header" id="title-bar">
+                <div class="modal-title" id="hp-pc-diags">@Localizer.STR_CUSTOMER_FEEDBACK_TITLE</div>
+            </div>
+        </div>
+        <div id="customer-feedback-body">
+            <div id="main-message">
+                <p>@Localizer.STR_CUSTOMER_FEEDBACK_WELCOME</p>
+                <p>@Localizer.String1</p>
+                <EditForm Model="info">
+                    <InputRadioGroup @bind-Value="info.IsHelpful">
+                        <InputRadio Value="@("Yes")" />@Localizer.STR_BUTTON_YES
+                        <br />
+                        <InputRadio Value="@("No")" />@Localizer.STR_BUTTON_NO
+                        <br />
+                        <InputRadio Value="@("NotSure")" />@Localizer.NotSure
+                    </InputRadioGroup>
+                </EditForm>
+                <br />
+                <p>@Localizer.STR_CUSTOMER_FEEDBACK_TELLMORE</p>
+                <table style="width:100%">
+                    <tr>
+                        <td style="width:80%">
+                            <textarea name="message" rows="4" style="width:100%" maxlength="1000" @bind="info.Message" @bind:event="oninput"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <p>@Localizer.STR_CUSTOMER_FEEDBACK_INDIVIDUAL</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style='display:flex; justify-content:space-around; margin:auto; width:100%;'>
+        <button @onclick="sendFeedback" class='hp-btn critical'>@Localizer.STR_CUSTOMER_FEEDBACK_SEND</button>
+        <a href="" @onclick="Model.PopWebPagePrivacyStatement"> @Localizer.STR_HP_PRIVACY_STATEMENT </a>
+        <button @onclick='() => NavigationManager.NavigateTo("")' class='hp-btn secondary'>@Localizer.STR_BUTTON_BACK</button>
+    </div>
+</div>
+<div id="page-mask"></div>
+
+
+@code
+{
+    private Info info = new();
+
+    private class Info
+    {
+        public string Message { get; set; } = "";
+        public string IsHelpful { get; set; } = "";
+    }
+
+    protected override void OnInitialized()
+    {
+        info = new();
+        base.OnInitialized();
+    }
+
+    void sendFeedback()
+    {
+        FrameworkController.SendFeedback(info.IsHelpful, info.Message);
+        NavigationManager.NavigateTo("");
+    }
+} 

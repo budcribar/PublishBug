@@ -1,0 +1,48 @@
+.custom-component-container {
+    width: 100%;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-body.container {
+    width: 100%;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+#promptContent {
+    margin-bottom: 10px;
+    min-height: 200px;
+    font-size: 1em;
+}
+
+.modal-content {
+    right: 50%;
+    width: 30vw;
+    min-width: 400px;
+}
+.field-icon {
+    float: right;
+    margin-right: 8px;
+    margin-top: -23px;
+    position: relative;
+    z-index: 2;
+    cursor:pointer;
+}
+::-ms-clear {
+    display: none;
+    width : 0;
+    height: 0;
+}
+::-ms-reveal {
+    display: none;
+    width : 0;
+    height: 0;
+}
+
+input.form-control2 {
+    width : 90%;
+    padding: 2%;
+}

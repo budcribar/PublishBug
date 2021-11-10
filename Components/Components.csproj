@@ -1,0 +1,94 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+ <PropertyGroup>
+    <DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
+    <SupportedPlatform>browser</SupportedPlatform>
+    <DebugType Condition="'$(Configuration)' != 'Debug'">None</DebugType>
+    <DebugSymbols Condition="'$(Configuration)' != 'Debug'">False</DebugSymbols>
+    <TargetFramework>net6</TargetFramework>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;Remote;Embedded;Mock</Configurations>
+    
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+   <IsPackable>false</IsPackable>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)../packages</PackageOutputPath>
+   <TypeScriptOutDir>wwwroot</TypeScriptOutDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!--<LocalizationNameSpace>SureCheck.Components</LocalizationNameSpace>
+    <LocalizationClass>ComponentsLocalizer</LocalizationClass>-->
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mock|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Remote|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Embedded|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Shared\NavMenu.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Resources\Localizations.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Shared\NavMenu.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Resources\Localizations.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.5.0-beta">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <TypeScriptCompile Include="Interop.ts" />
+   
+
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0-rc.2.21480.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-rc.2.21480.10" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0-rc.2.21480.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClientInterfaces\ClientInterfaces.csproj" />
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HPI.FrameworkAbstractions">
+      <HintPath>..\HPI.FrameworkAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="HPI.Logger.Abstractions">
+      <HintPath>..\HPI.Logger.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="HPI.SystemAbstractions">
+      <HintPath>..\HPI.SystemAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="HPI.Tool.Abstractions">
+      <HintPath>..\HPI.Tool.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

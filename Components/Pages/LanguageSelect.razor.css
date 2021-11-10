@@ -1,0 +1,42 @@
+.active-language {
+    background-color: #0096d6;
+    outline-color: #00638e;
+}
+
+    .active-language .tile-label {
+        color: whitesmoke !important;
+        font-weight: bold;
+    }
+
+.selected-language {
+    color: #0096d6;
+    font-weight: bold;
+}
+
+.test-desc {
+    font-size: 1.5em;
+    margin: 10px 0px 5px 0px;
+    text-align: left;
+}
+
+.language-list {
+    width: 100%;
+    overflow-y: auto;
+    padding-bottom: 1em;
+    padding-top: 0.5em;
+    border-top: 1px solid lightgrey;
+}
+
+.checkbox {
+    margin-top: .1em;
+    margin-bottom: .1em;
+}
+
+.hp-checkbox-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.fa.fa-square-o, .fa.fa-check-square {
+    font-size: 1.3em;
+}

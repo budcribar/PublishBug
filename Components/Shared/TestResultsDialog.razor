@@ -1,0 +1,320 @@
+﻿@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject LogViewModel Model
+@inject IClipboard Clipboard
+
+<div style="@modalDisplay;min-height: 500px;" class="modal @(modalClass)" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div style="background-color:#0096d6" class="modal-header">
+                <button type="button" class="close" @onclick="CloseModal" aria-label="Close">
+                    <span aria-hidden="true" style="font-size: 2em;">&times;</span>
+                </button>
+                <div class="modal-title">@modalHeader</div>
+            </div>
+            @if (modalActive)
+            {
+                <div class="modal-body container" style="width: 100%; max-height: 70vh; overflow-y: auto;">
+                    <div style="@(promptTroubleshoot? "" : "display:none")">
+                        <div class="header3">
+                            @this.toolName
+                        </div>
+                        @if (testId == "8e2374d3-9406-41de-a634-b9d0fa7803bd")
+                        {
+                            <div>
+                                <!-- Audio Playback Test -->
+                        <p>@Localizer.STR_AUDIO_PB_SPEAKERS</p>
+                                <div class="header3">@Localizer.STR_ADDITIONAL_GUIDANCE</div>
+                                <p>@Localizer.STR_CONNECT_SPEAKERS</p>
+
+                                @if (hasInternetConnection)
+                                {
+                                    <div>
+                                        <p>@Localizer.STR_FOLLOWING_DOCUMENTS_AVAILABLE</p>
+                                        <p><a href="" @onclick="Model.PopWebPageAudioNoSoundFromComputer">@Localizer.STR_AUDIO_NO_SOUND_COMPUTER</a></p>
+                                        <p><a href="" @onclick="Model.PopWebPageAudioNoSoundFromSpeakers">@Localizer.STR_AUDIO_NO_SOUND_SPEAKERS</a></p>
+                                        }
+                                    </div>
+                                }
+
+                            </div>
+                        }
+                        @if (testId == "cf7d4afc-bd89-486d-92b8-ffa8f74ffc8e")
+                        {
+                            <div>
+                                <!-- AudioRecordTest -->
+                        <p>@Localizer.STR_AUDIO_PB_MICROPHONES</p>
+                                <div class="header3">@Localizer.STR_ADDITIONAL_GUIDANCE</div>
+                                <p>@Localizer.STR_CONNECT_MICROPHONES</p>
+                                @if (hasInternetConnection)
+                                {
+                                    <div>
+                                        <p>@Localizer.STR_FOLLOWING_DOCUMENTS_AVAILABLE</p>
+                                        <p><a href="" @onclick="Model.PopWebPageAudioMicrophoneTroubleshooting">@Localizer.STR_AUDIO_MICROPHONE_TROUBLESHOOTING</a></p>
+                                    </div>
+                                }
+                            </div>
+                        }
+
+                        @if (testId == "607b14c3-aab0-4b48-8b3f-fb35b5f74662")
+                        {
+                            <div>
+                                <!-- Mouse/Touchpad Pointer Test -->
+                        <p>@Localizer.STR_MOUSE_BUTTON_PB</p>
+                                <div class="header3">@Localizer.STR_ADDITIONAL_GUIDANCE</div>
+                                <p>@Localizer.STR_MOUSE_TRY_DIFF</p>
+                                @if (hasInternetConnection)
+                                {
+                                    <div>
+                                        <p>@Localizer.STR_FOLLOWING_DOCUMENTS_AVAILABLE</p>
+                                        <p><a href="" @onclick="Model.PopWebPageTroubleshootingMouseProblems">@Localizer.STR_MOUSE_TROUBLESHOOT_PB</a></p>
+                                        <p><a href="" @onclick="Model.PopWebPageWirelessKeyboardAndMouseConnectionIssues">@Localizer.STR_KBD_WIRELESS_CONNECT_ISSUES</a></p>
+                                    </div>
+                                }
+                            </div>
+                        }
+
+                        @if (testId == "c8bf2589-a5f1-4c2e-b327-5e6418ee6e15")
+                        {
+                            <div>
+                                <!-- Mouse Wheel Test -->
+                        <p>@Localizer.STR_MOUSE_BUTTON_PB</p>
+                                <div class="header3">@Localizer.STR_ADDITIONAL_GUIDANCE</div>
+                                <p>@Localizer.STR_MOUSE_TRY_DIFF</p>
+                                @if (hasInternetConnection)
+                                {
+                                    <div>
+                                        <p>@Localizer.STR_FOLLOWING_DOCUMENTS_AVAILABLE</p>
+                                        <p><a href="" @onclick="Model.PopWebPageTroubleshootingMouseProblems">@Localizer.STR_MOUSE_TROUBLESHOOT_PB</a></p>
+                                        <p><a href="" @onclick="Model.PopWebPageWirelessKeyboardAndMouseConnectionIssues">@Localizer.STR_KBD_WIRELESS_CONNECT_ISSUES</a></p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        @if (testId == "c5edd890-dece-4615-ac77-5e41dd19b248")
+                        {
+                            <div>
+                                <!-- Mouse/Touchpad Drag And Drop Test -->
+                        <p>@Localizer.STR_MOUSE_MOVE_SENSOR</p>
+                                <div class="header3">@Localizer.STR_ADDITIONAL_GUIDANCE</div>
+                                <p>@Localizer.STR_MOUSE_TRY_DIFF</p>
+                                @if (hasInternetConnection)
+                                {
+                                    <div>
+                                        <p>@Localizer.STR_FOLLOWING_DOCUMENTS_AVAILABLE</p>
+                                        <p><a href="" @onclick="Model.PopWebPageTroubleshootingMouseProblems">@Localizer.STR_MOUSE_TROUBLESHOOT_PB</a></p>
+                                        <p><a href="" @onclick="Model.PopWebPageWirelessKeyboardAndMouseConnectionIssues">@Localizer.STR_KBD_WIRELESS_CONNECT_ISSUES</a></p>
+                                    </div>
+                                }
+                            </div>
+                        }
+
+                        @if (testId == "133336db-ad99-4b4e-b4b3-c5bf376f510c" || testId == "004e5668-ac98-4ac8-bd66-4e660cc06fc0")
+                        {
+                            <div>
+                                <!-- Keyboard Test -->
+                        <p>@Localizer.STR_KBD_REPLACE</p>
+                                <div class="header3">@Localizer.STR_ADDITIONAL_GUIDANCE</div>
+                                <p>@Localizer.STR_KBD_TRY_DIFF</p>
+                                @if (hasInternetConnection)
+                                {
+                                    <div>
+                                        <p>@Localizer.STR_FOLLOWING_DOCUMENTS_AVAILABLE</p>
+                                        <p><a href="" @onclick="Model.PopWebPageKbdTroubleshooting">@Localizer.STR_KBD_TROUBLESHOOT</a></p>
+                                        <p><a href="" @onclick="Model.PopWebPageWiredKbdTroubleshooting">@Localizer.STR_KBD_WIRED_TROUBLE</a></p>
+                                        <p><a href="" @onclick="Model.PopWebPageWirelessKbdTroubleshooting">@Localizer.STR_KBD_WIRELESS_CONNECT_ISSUES</a></p>
+                                    </div>
+                                }
+                            </div>
+                        }
+
+                        @if (testId == "44ae378e-0fa4-456a-ae8f-f4a801202b79")
+                        {
+                            <div>
+                                <!-- Video Palette Check -->
+                        <p>@Localizer.STR_DISPLAY_PB_ADAPTER</p>
+                                <div class="header3">@Localizer.STR_ADDITIONAL_GUIDANCE</div>
+                                <p>@Localizer.STR_DISCONNECT_DISPLAY</p>
+                            </div>
+                        }
+
+                        @if (testId == "9dff918d-5180-4b7d-b2cd-e0d2b11d95e0")
+                        {
+                            <div>
+                                <!-- Webcam Test -->
+                        <p>@Localizer.STR_WEBCAM_PB</p>
+                                @if (hasInternetConnection)
+                                {
+                                    <div>
+                                        <p>@Localizer.STR_FOLLOWING_DOCUMENTS_AVAILABLE</p>
+                                        <p><a href="" @onclick="Model.PopWebPageWebcamDocuments">@Localizer.STR_WEBCAM_DOCUMENTS</a></p>
+                                    </div>
+                                }
+                            </div>
+                        }
+
+                        @if (promptHaveGuidanceStepsBeenTaken)
+                        {
+                            <div>
+                                <p>@Localizer.STR_HAVE_ADDITIONAL_GUIDANCE</p>
+                                <div style="margin-left:40px; margin-right:40px;">
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td class="centered no-wrap" style="width:50%;"><button id="btn-update" class="hp-btn primary" style="font-size: 0.7em; height:auto; line-height:normal;" aria-hidden="true" @onclick="PromptPleaseMakeSureGuidanceStepsTaken"> @Localizer.STR_BUTTON_NO </button></td>
+                                            <td class="centered no-wrap" style="width:50%;"><button id="btn-update" class="hp-btn primary" style="font-size: 0.7em; height:auto; line-height:normal;" aria-hidden="true" @onclick="PromptGuidanceStepsNotResolved"> @Localizer.STR_BUTTON_YES </button></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+
+                        @if (promptPleaseMakeSureGuidanceStepsTaken)
+                        {
+                            <div>
+                                <p>@Localizer.STR_PLEASE_GUIDANCE</p>
+                                <div style="margin-left:40px; margin-right:40px;">
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td class="centered no-wrap" style="width:50%;"><button id="btn-update" class="hp-btn primary" style="font-size: 0.7em; height:auto; line-height:normal;" aria-hidden="true" @onclick="PromptHaveGuidanceStepsBeenTaken"> @Localizer.STR_BUTTON_OK  </button></td>
+                                            <td class="centered no-wrap" style="width:50%;">&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+                        @if (promptGuidanceStepsNotResolved)
+                        {
+                            <div>
+                                <p>@Localizer.STR_DID_ADDITIONAL_GUIDANCE</p>
+                                <div style="margin-left:40px; margin-right:40px;">
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td class="centered no-wrap" style="width:50%;"><button id="btn-update" class="hp-btn primary" style="font-size: 0.7em; height:auto; line-height:normal;" aria-hidden="true" @onclick="PromptPrivacyStatementQuestion"> @Localizer.STR_BUTTON_NO </button></td>
+                                            <td class="centered no-wrap" style="width:50%;"><button id="btn-update" class="hp-btn primary" style="font-size: 0.7em; height:auto; line-height:normal;" aria-hidden="true" @onclick="AdditionalStepsFixedProblem"> @Localizer.STR_BUTTON_YES </button></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+
+                        <br />
+                    </div>
+
+                    @if (promptPrivacyStatementQuestion)
+                    {
+                        <div>
+                            <br />
+                            <p>@Localizer.STR_ALLOW_HP</p>
+                            <div style="margin-left:40px; margin-right:40px;">
+                                <table style="width:100%;">
+                                    <tr>
+                                        <td class="centered no-wrap" style="width:50%;"><button id="btn-update" class="hp-btn primary" style="font-size: 0.7em; height:auto; line-height:normal;" aria-hidden="true" @onclick="UserDisagreedToPrivacyStatement"> @Localizer.STR_BUTTON_NO </button></td>
+                                        <td class="centered no-wrap" style="width:50%;"><button id="btn-update" class="hp-btn primary" style="font-size: 0.7em; height:auto; line-height:normal;" aria-hidden="true" @onclick="PromptHPCustomerSupport"> @Localizer.STR_BUTTON_YES </button></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br />
+                            @if (hasInternetConnection)
+                            {
+                                <div>
+                                    <p>@Localizer.STR_CLICK_PRIVACY</p>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    @if (promptHPCustomerSupport)
+                    {
+                        <div>
+                            <br />
+                            <div>
+                                <p>@Localizer.STR_FOR_ASSISTANCE</p>
+                                <p>@Localizer.STR_IF_PC_ONLINE</p>
+                                <p>@Localizer.STR_IF_PC_OFFLINE</p>
+                            </div>
+                            <div style="text-align: center;"><span><img style="height: 8em; width: 8em;" id="qrcode" src="@qrCodeValue" /></span></div>
+                            <br />
+                            <div>
+                                <p>@Localizer.STR_IF_TALKING</p>
+                            </div>
+                            <div>
+                                <table style="border:hidden; width:auto; margin: auto;">
+                                    <tr style="border:hidden">
+                                        <td style="border:hidden"><span class="log-text-container"><b>@Localizer.STR_RESULT_FAILURE_ID</b></span></td>
+                                        <td style="border:hidden"><span class="log-text-container">@this.failureId</span></td>
+                                        <td style="border:hidden; padding-bottom:.5em;">
+                                            <button @onclick="() => copyToClipboard(this.failureId)" title="@Localizer.STR_HELP_COPY_TO_CLIPBOARD" class="hp-btn secondary btn-copy"><i class="fa fa-files-o" aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+
+                                    @if (!string.IsNullOrEmpty(this.productId))
+                                    {
+                                        <tr style="border:hidden">
+                                            <td style="border:hidden"><span class="log-text-container"><b>@Localizer.ProductId</b></span></td>
+                                            <td style="border:hidden"><span class="log-text-container">@this.productId</span></td>
+                                            <td style="border:hidden;">
+                                                <button @onclick="() => copyToClipboard(this.productId)" title="@Localizer.STR_HELP_COPY_TO_CLIPBOARD" class="hp-btn secondary btn-copy"><i class="fa fa-files-o" aria-hidden="true"></i></button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                            <br />
+                        </div>
+                    }
+
+                    @if (promptMoreInformation)
+                    {
+
+                        <div>
+                            <div class="header3">
+                                @this.instance ? this.instance : this.toolName
+                            </div>
+                            <br />
+                            <div>
+                                <p>@this.instance ? this.toolName : ""</p>
+                                <p>@Localizer.STR_LOGS_RESULT : @this.localizedTestResult</p>
+
+                                @if (!string.IsNullOrEmpty(this.passID))
+                                {
+                                    <div>
+                                        <p>PASS ID : @this.passID</p>
+                                    </div>
+                                }
+                                <p>@Localizer.ProductId : @this.productId</p>
+                                <p>@Localizer.SerialNumber : @this.serialNumber</p>
+                            </div>
+                            <br />
+                        </div>
+                    }
+                </div>
+            }
+            <div class="HpDisclaimerModal-footer" style="text-align: center">
+                <div class="containerPrivacyContent">
+                    <div>
+                        <button style="float: left;" @onclick="CloseModal" class="hp-btn secondary" type="button">@Localizer.STR_BUTTON_BACK</button>
+                    </div>
+                    @if (promptPrivacyStatementQuestion && hasInternetConnection)
+                    {
+                        <div>
+
+                            <a href="" @onclick="Model.PopWebPagePrivacyStatement"> @Localizer.STR_HP_PRIVACY_STATEMENT </a>
+                        </div>
+                    }
+
+                    @if (!promptPrivacyStatementQuestion && promptHPCustomerSupport && hasInternetConnection)
+                    {
+                        <div>
+                            <button id="btnNext" style="float:right;" @onclick="() => submitIfConnected()" class="hp-btn critical" type="button">@Localizer.Next</button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (showBackdrop)
+{
+    <div class="modal-backdrop fade @modalClass" style="@modalDisplay"></div>
+}

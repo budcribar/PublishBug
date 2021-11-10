@@ -1,0 +1,68 @@
+﻿@page "/systeminformation"
+@using Components.Custom
+@using Interfaces
+
+@inject NavigationManager NavigationManager
+@inject ILocalizedSystemInfo SystemInfo
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject IPlatformInfo PlatformInfo
+@inject Task LoadTask
+
+<div class='page-container-flex bg-white'>
+	@if (PlatformInfo.SupportsBiosFlash)
+	{
+		<div class="page-header-multi-container">
+			<div class="iteminvisible">
+				<span>@Localizer.BiosUpdate</span>
+			</div>
+			<div class="primary-section-header-24">@Localizer.STR_SYSINFO_TITLE</div>
+			<div id="BiosUpdateOption">
+				<a class='hp-btn primary' aria-hidden="true" routerLink='/biosUpdate'>
+					<span>@Localizer.BiosUpdate</span>
+				</a>
+			</div>
+		</div>
+	}
+	else
+	{
+		<div class="page-header-container">
+			<div class="primary-section-header-24">@Localizer.STR_SYSINFO_TITLE</div>
+		</div>
+	}
+
+	<div class="content">
+		<div class="inner">
+			<div class="system-info-container">
+				@if (isLoading)
+				{
+					<LoadingComponent Height="150" Width="150" />
+				}
+				<div class="center-content">
+					<div class="tab-content">
+						<ul class="info-tab-list">
+							@foreach (var infoEntry in systemInfoArray)
+							{
+								<li tabindex="0" id=@infoEntry.Name @onclick="() => NavToInfoPage(infoEntry)" class=@(infoEntry.Name == currentInfoEntry?.Name ? "active" : "")>
+									<span style="font-weight: bold; line-height:120%;">@infoEntry.Name</span>
+								</li>
+							}
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			@if (currentInfoEntry != null)
+			{
+				<div class="page-content-container">
+					<SystemInformationComponent entry="currentInfoEntry" onInfoPageClosed="hideInfoPage"></SystemInformationComponent>
+				</div>
+			}
+
+		</div>
+	</div>
+	<div class="bottom">
+		<a class='hp-btn secondary' @onclick='() => NavigationManager.NavigateTo("")'>
+			<span class="nav-text">@Localizer.STR_BUTTON_BACK</span>
+		</a>
+	</div>
+</div>

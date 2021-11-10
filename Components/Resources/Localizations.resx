@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CheckForUpdate" xml:space="preserve">
+    <value>Check for update</value>
+  </data>
+  <data name="CheckForUpdateQuestion" xml:space="preserve">
+    <value>Would you like to check for an update now?</value>
+  </data>
+  <data name="ShuttingdownDesc" xml:space="preserve">
+    <value>Are you sure you want to quit?</value>
+  </data>
+  <data name="STR_BUTTON_ABOUT" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="STR_BUTTON_BACK" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="STR_BUTTON_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="STR_BUTTON_COMPONENT_TESTS" xml:space="preserve">
+    <value>Component Tests</value>
+  </data>
+  <data name="STR_BUTTON_FINISH" xml:space="preserve">
+    <value>FINISH</value>
+  </data>
+  <data name="STR_BUTTON_MAIN_MENU" xml:space="preserve">
+    <value>Main Menu</value>
+  </data>
+  <data name="STR_BUTTON_NO" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="STR_BUTTON_RUN_ONCE" xml:space="preserve">
+    <value>Run once</value>
+  </data>
+  <data name="STR_BUTTON_SYSTEM_TESTS" xml:space="preserve">
+    <value>System Tests</value>
+  </data>
+  <data name="STR_BUTTON_TEST_LOGS" xml:space="preserve">
+    <value>Test Logs</value>
+  </data>
+  <data name="STR_BUTTON_YES" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="STR_CUSTOMER_LOGS_NOT_FOUND" xml:space="preserve">
+    <value>Customer Logs were not found.</value>
+  </data>
+  <data name="STR_CUSTOMER_LOGS_SEARCHING" xml:space="preserve">
+    <value>Searching for Customer Logs</value>
+  </data>
+  <data name="STR_HDDINFO_TYPE" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="STR_HELP_COMPONENT_TESTS" xml:space="preserve">
+    <value>Select one of the following tests to check the associated sub-system.</value>
+  </data>
+  <data name="STR_HELP_COPY_TO_CLIPBOARD" xml:space="preserve">
+    <value>Copy to clipboard</value>
+  </data>
+  <data name="STR_HELP_EMPTY_LOG_DETAIL" xml:space="preserve">
+    <value>The log detail for this test instance is empty.</value>
+  </data>
+  <data name="STR_HELP_FOLLOWING_TESTS_PERFORMED" xml:space="preserve">
+    <value>The following tests will be performed:</value>
+  </data>
+  <data name="STR_HELP_HIDE_DESC" xml:space="preserve">
+    <value>Hide Description</value>
+  </data>
+  <data name="STR_HELP_INITIALIZING_DIAGS" xml:space="preserve">
+    <value>Initializing Diagnostics</value>
+  </data>
+  <data name="STR_HELP_INSTANCE" xml:space="preserve">
+    <value>Instance</value>
+  </data>
+  <data name="STR_HELP_LANGUAGE_PROMPT" xml:space="preserve">
+    <value>Please select a Language.</value>
+  </data>
+  <data name="STR_HELP_PROGRESS" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="STR_HELP_SHOW_DESC" xml:space="preserve">
+    <value>Show Description</value>
+  </data>
+  <data name="STR_HELP_SYSTEM_EXTENSIVE_TEST1" xml:space="preserve">
+    <value>The System Extensive Test will check your system to make sure that the main components are functioning properly.</value>
+  </data>
+  <data name="STR_HELP_SYSTEM_EXTENSIVE_TEST2" xml:space="preserve">
+    <value>It provides a more comprehensive test than the System Quick Test.</value>
+  </data>
+  <data name="STR_HELP_SYSTEM_EXTENSIVE_TEST_DISABLE_SLEEP" xml:space="preserve">
+    <value>Ensure sleep mode is disabled in the system's Power Options while performing this test.</value>
+  </data>
+  <data name="STR_HELP_SYSTEM_FAST_TEST1" xml:space="preserve">
+    <value>The System Fast Test will perform a fast check of your system to make sure that the main components are functioning properly.</value>
+  </data>
+  <data name="STR_HELP_SYSTEM_TEST5" xml:space="preserve">
+    <value>The Extensive Test may take 2 or more hours to complete.</value>
+  </data>
+  <data name="STR_HELP_SYSTEMCHECK_EXEC_TEST" xml:space="preserve">
+    <value>Executing Test %d of %d</value>
+  </data>
+  <data name="STR_HELP_URL" xml:space="preserve">
+    <value>For more information and updates, please visit www.hp.com/go/techcenter/PCDiags.</value>
+  </data>
+  <data name="STR_HELP_URL2" xml:space="preserve">
+    <value>For more information and updates, please visit %s.</value>
+  </data>
+  <data name="STR_HELP_MORE_INFO" xml:space="preserve">
+    <value>For more information about %s: %s.</value>
+  </data>
+  <data name="STR_CLICK_HERE" xml:space="preserve">
+    <value>Select here</value>
+  </data>
+  <data name="STR_HELP_VERSION" xml:space="preserve">
+    <value>Version %s</value>
+  </data>
+  <data name="STR_LOG_DETAIL" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="STR_LOGS_DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="STR_LOGS_RESULT" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="STR_LOGS_START_TIME" xml:space="preserve">
+    <value>Start time</value>
+  </data>
+  <data name="STR_RESULT_CANCELED" xml:space="preserve">
+    <value>CANCELED</value>
+  </data>
+  <data name="STR_RESULT_ESC_MESSAGE_TEST_LOGS" xml:space="preserve">
+    <value>These results are saved in the Test Logs which can be accessed from the Main Menu.</value>
+  </data>
+  <data name="STR_RESULT_FAILED" xml:space="preserve">
+    <value>FAILED</value>
+  </data>
+  <data name="STR_RESULT_FAILURE_ID" xml:space="preserve">
+    <value>Failure ID</value>
+  </data>
+  <data name="STR_RESULT_FAILURE_INDICATION" xml:space="preserve">
+    <value>Please use the Failure ID code above when contacting HP Support.</value>
+  </data>
+  <data name="STR_RESULT_PASSED" xml:space="preserve">
+    <value>PASSED</value>
+  </data>
+  <data name="STR_SYSINFO_TITLE" xml:space="preserve">
+    <value>System Information</value>
+  </data>
+  <data name="STR_TITLE_LANGUAGE_SELECTION" xml:space="preserve">
+    <value>Language Selection</value>
+  </data>
+  <data name="STR_TITLE_SYSTEM_EXTENSIVE_TEST" xml:space="preserve">
+    <value>System Extensive Test</value>
+  </data>
+  <data name="STR_TITLE_SYSTEM_FAST_TEST" xml:space="preserve">
+    <value>System Fast Test</value>
+  </data>
+  <data name="STR_VIEW_DETAIL" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="SubmitToHPSupport" xml:space="preserve">
+    <value>Submit to HP Support</value>
+  </data>
+  <data name="SubmitWarrantyCode" xml:space="preserve">
+    <value>Please click a Failure ID to submit it online to HP Support</value>
+  </data>
+  <data name="TS_ApplicationNotAvailable" xml:space="preserve">
+    <value>The application will not be available while a scheduled scan is running.</value>
+  </data>
+  <data name="TS_AutomatedScans" xml:space="preserve">
+    <value>Automated Scans</value>
+  </data>
+  <data name="TS_ChooseToEnable" xml:space="preserve">
+    <value>If you choose to enable automatic hardware scans the next scan will run %d</value>
+  </data>
+  <data name="TS_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="TS_Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="TS_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="TS_Keep" xml:space="preserve">
+    <value>Keep</value>
+  </data>
+  <data name="TS_KeepOrDisable" xml:space="preserve">
+    <value>You may choose to keep the automatic scan scheduled as is or you may choose to disable it.</value>
+  </data>
+  <data name="TS_NewScanScheduled" xml:space="preserve">
+    <value>A new automatic hardware scan has been scheduled.</value>
+  </data>
+  <data name="TS_NextScanIsScheduled" xml:space="preserve">
+    <value>The next automated scan is scheduled to run %d</value>
+  </data>
+  <data name="TS_NoScansScheduled" xml:space="preserve">
+    <value>There are currently no automatic hardware scans scheduled.</value>
+  </data>
+  <data name="TS_ScanWillRunFastSystemTest" xml:space="preserve">
+    <value>The scheduled scan will automatically run the System Scan.</value>
+  </data>
+  <data name="TS_SystemOff" xml:space="preserve">
+    <value>If the system is off when the scan is scheduled it will attempt to run at the next available opportunity.</value>
+  </data>
+  <data name="TS_Title" xml:space="preserve">
+    <value>Automatic Hardware Scan Scheduler</value>
+  </data>
+  <data name="UpdateCheck" xml:space="preserve">
+    <value>Update Check</value>
+  </data>
+  <data name="UpdateNotice" xml:space="preserve">
+    <value>We noticed that it has been some time since you have checked for updates.</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_TITLE" xml:space="preserve">
+    <value>Customer Feedback</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_ASSISTANCE" xml:space="preserve">
+    <value>For further assistance please use HP PC Hardware Diagnostics Windows to contact technical support.</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_INDIVIDUAL" xml:space="preserve">
+    <value>We are not answering individual comments, but your feedback will help us improve our products and services.</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_OPTION_COULDBEBETTER" xml:space="preserve">
+    <value>Could be better</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_OPTION_DIDNOTWORK" xml:space="preserve">
+    <value>Step did not work</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_OPTION_FINE" xml:space="preserve">
+    <value>Fine as is</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_OPTION_MISSINGINFORMATION" xml:space="preserve">
+    <value>Information was missing</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_OPTION_NOTASEXPECTED" xml:space="preserve">
+    <value>Not what I expected</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_OPTION_OTHER" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_OPTION_TOOHARD" xml:space="preserve">
+    <value>Too hard to understand</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_SEND" xml:space="preserve">
+    <value>Send feedback</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_TELLMORE" xml:space="preserve">
+    <value>Tell us more</value>
+  </data>
+  <data name="STR_HP_PRIVACY" xml:space="preserve">
+    <value>HP Privacy Statement:</value>
+  </data>
+  <data name="STR_HP_SUPPORT_DISCLAIMER_PROMPT" xml:space="preserve">
+    <value>Allow HP to use your HP PC information, including the serial number,  product number and warranty information of the PC. </value>
+  </data>
+  <data name="STR_TITLE_HP_SUPPORT_DISCLAIMER" xml:space="preserve">
+    <value>HP Support Disclaimer</value>
+  </data>
+  <data name="STR_YES_RECOMMENDED" xml:space="preserve">
+    <value>Yes (Recommended)</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_HELPFUL" xml:space="preserve">
+    <value>Was this information helpful?</value>
+  </data>
+  <data name="STR_HP_PRIVACY_STATEMENT" xml:space="preserve">
+    <value>HP Privacy Statement</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="F30140_Key4" xml:space="preserve">
+    <value>Click on the About button to find out more details about each test.</value>
+  </data>
+  <data name="F30140_Key2" xml:space="preserve">
+    <value>Test Descriptions</value>
+  </data>
+  <data name="F30140_Key16" xml:space="preserve">
+    <value>The hardware component tested for this audio test failed. This issue could be resolved running the Microsoft Troubleshoot Sound Problems and/or related to configuration of the audio playback device.</value>
+  </data>
+  <data name="F30140_Key36" xml:space="preserve">
+    <value>It appears that one of your buttons wasn’t clicked, please confirm.</value>
+  </data>
+  <data name="F30140_Key37" xml:space="preserve">
+    <value>I clicked the button but it does not work.</value>
+  </data>
+  <data name="F30140_Key35" xml:space="preserve">
+    <value>Click on the correct option below</value>
+  </data>
+  <data name="F30140_Key26" xml:space="preserve">
+    <value>Some keys may be colored gray in the on–screen display (e.g. the fn key).</value>
+  </data>
+  <data name="Combined_Key_Operations" xml:space="preserve">
+    <value>These keys may still be used for combined-key operations</value>
+  </data>
+  <data name="F30140_Key27" xml:space="preserve">
+    <value>Due to  system settings you may need to hold down the Fn key for the F1-F12 keys to register properly.</value>
+  </data>
+  <data name="F30140_Key29" xml:space="preserve">
+    <value>The keys are not working</value>
+  </data>
+  <data name="F30140_Key33" xml:space="preserve">
+    <value>I pressed these keys multiple times</value>
+  </data>
+  <data name="F30140_Key32" xml:space="preserve">
+    <value>It seems keys %s were pressed multiple times, please confirm they are working as expected.</value>
+  </data>
+  <data name="F30140_Key13" xml:space="preserve">
+    <value>Please use the Microsoft Network Adapter Troubleshooter to help determine the next best course of action.</value>
+  </data>
+  <data name="F30140_Key23" xml:space="preserve">
+    <value>Press the keys on your keyboard one by one until they all light up green on screen, or another color when pressed multiple times.</value>
+  </data>
+  <data name="F30140_Key24" xml:space="preserve">
+    <value>Select FINISH  if all keys have been pressed and your keyboard exactly matches the layout shown on screen.</value>
+  </data>
+  <data name="F30140_Key25" xml:space="preserve">
+    <value>Select SKIP if all keys have been pressed but some keys shown on the screen are not physically present on your keyboard.</value>
+  </data>
+  <data name="F30140_Key5" xml:space="preserve">
+    <value>Click the %s button to start testing.</value>
+  </data>
+  <data name="F30140_Key19" xml:space="preserve">
+    <value>Wired Networking Tests</value>
+  </data>
+  <data name="F30140_Key20" xml:space="preserve">
+    <value>Wireless Networking Tests</value>
+  </data>
+  <data name="F30140_Key1" xml:space="preserve">
+    <value>Check for latest version</value>
+  </data>
+  <data name="F30140_Key10" xml:space="preserve">
+    <value>The PC hardware required for this is not detected or available.</value>
+  </data>
+  <data name="F30140_Key11" xml:space="preserve">
+    <value>More info</value>
+  </data>
+  <data name="F30140_Key12" xml:space="preserve">
+    <value>Microsoft Network Adapter Troubleshooter</value>
+  </data>
+  <data name="F30140_Key14" xml:space="preserve">
+    <value>The hardware component tested for this audio test PASSED, there were no issues found. If you are still experiencing issues with your sound make sure the Sound playback device is configured as the output device. This can be done in the Sound settings. In Windows, type sound into the Search bar.</value>
+  </data>
+  <data name="F30140_Key15" xml:space="preserve">
+    <value>Note:</value>
+  </data>
+  <data name="F30140_Key17" xml:space="preserve">
+    <value>Visit the HP support site for additional guidance on how to resolve this using the HP Virtual Agent.</value>
+  </data>
+  <data name="F30140_Key18" xml:space="preserve">
+    <value>Troubleshoot sound problems</value>
+  </data>
+  <data name="F30140_Key21" xml:space="preserve">
+    <value>With numerical keypad</value>
+  </data>
+  <data name="F30140_Key22" xml:space="preserve">
+    <value>Without numerical keypad</value>
+  </data>
+  <data name="F30140_Key28" xml:space="preserve">
+    <value>It seems keys %s were not pressed, please confirm they are not reacting.</value>
+  </data>
+  <data name="F30140_Key3" xml:space="preserve">
+    <value>Test Descriptions</value>
+  </data>
+  <data name="F30140_Key30" xml:space="preserve">
+    <value>I did not press these keys</value>
+  </data>
+  <data name="F30140_Key31" xml:space="preserve">
+    <value>I don’t have these keys on my keyboard</value>
+  </data>
+  <data name="F30140_Key34" xml:space="preserve">
+    <value>Use the left or right mouse button (as indicated) to drag the orange boxes onto the grey boxes following the path as indicated by the arrow.</value>
+  </data>
+  <data name="F30140_Key38" xml:space="preserve">
+    <value>I did not click the button</value>
+  </data>
+  <data name="F30140_Key6" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="F30140_Key7" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="F30140_Key8" xml:space="preserve">
+    <value>Additional tests including memory test are available in HP PC Hardware Diagnostics UEFI.</value>
+  </data>
+  <data name="F30140_Key9" xml:space="preserve">
+    <value>Some tests may not be available in HP PC Hardware Diagnostics Windows.</value>
+  </data>
+  <data name="ApplicationPurpose" xml:space="preserve">
+    <value>HP PC Hardware Diagnostics Windows is a Windows-based utility that allows you to run diagnostic tests to determine if the computer hardware is functioning properly. The tool runs within the Windows operating system in order to diagnose hardware failures.</value>
+  </data>
+  <data name="STR_ACTION_NEEDED" xml:space="preserve">
+    <value>Action Needed</value>
+  </data>
+  <data name="STR_CONTACT_HP" xml:space="preserve">
+    <value>Contact HP</value>
+  </data>
+  <data name="STR_QR_CODE" xml:space="preserve">
+    <value>QR Code</value>
+  </data>
+  <data name="ProductId" xml:space="preserve">
+    <value>Product ID</value>
+  </data>
+  <data name="STR_ADDITIONAL_GUIDANCE" xml:space="preserve">
+    <value>Additional guidance recommended.</value>
+  </data>
+  <data name="STR_AUDIO_NO_SOUND_COMPUTER" xml:space="preserve">
+    <value>HP Desktop PCs - No Sound from the Computer (Windows 10)</value>
+  </data>
+  <data name="STR_AUDIO_NO_SOUND_SPEAKERS" xml:space="preserve">
+    <value>HP Notebook PCs - No Sound from Speakers (Windows 10)</value>
+  </data>
+  <data name="STR_AUDIO_PB_SPEAKERS" xml:space="preserve">
+    <value>The test found a problem playing audio or sounds from the speakers.</value>
+  </data>
+  <data name="STR_CONNECT_SPEAKERS" xml:space="preserve">
+    <value>Unplug and reconnect the speakers to the computer.</value>
+  </data>
+  <data name="STR_CONNECT_MICROPHONES" xml:space="preserve">
+    <value>Unplug and reconnect the microphones to the computer.</value>
+  </data>
+  <data name="STR_AUDIO_PB_MICROPHONES" xml:space="preserve">
+    <value>The test found a problem recording sounds.</value>
+  </data>
+  <data name="STR_AUDIO_MICROPHONE_PROBLEMS" xml:space="preserve">
+    <value>HP PCs - Resolving Microphone Problems (Windows 10, 8)</value>
+  </data>
+  <data name="STR_AUDIO_MICROPHONE_TROUBLESHOOTING" xml:space="preserve">
+    <value>HP PCs - Microphone troubleshooting (Windows 10)</value>
+  </data>
+  <data name="STR_CONTACT_HP_SUPPORT" xml:space="preserve">
+    <value>Contact HP Support</value>
+  </data>
+  <data name="STR_DID_ADDITIONAL_GUIDANCE" xml:space="preserve">
+    <value>Did additional steps resolve your issue?</value>
+  </data>
+  <data name="STR_DISCONNECT_DISPLAY" xml:space="preserve">
+    <value>Try disconnecting the display or monitor and reconnecting it. If possible, try removing and reseating the graphics card and cables.</value>
+  </data>
+  <data name="STR_DISPLAY_PB_ADAPTER" xml:space="preserve">
+    <value>The test found a problem with the display adapter. The adapter or the system board may need to be replaced.</value>
+  </data>
+  <data name="STR_FOLLOWING_DOCUMENTS_AVAILABLE" xml:space="preserve">
+    <value>The following documents are available for reference:</value>
+  </data>
+  <data name="STR_HAVE_ADDITIONAL_GUIDANCE" xml:space="preserve">
+    <value>Have additional guidance steps been taken?</value>
+  </data>
+  <data name="STR_KBD_REPLACE" xml:space="preserve">
+    <value>The test found a problem with the keyboard. The keyboard may need to be replaced.</value>
+  </data>
+  <data name="STR_KBD_TROUBLESHOOT" xml:space="preserve">
+    <value>HP Notebook PCs - Keyboard Troubleshooting (Windows)</value>
+  </data>
+  <data name="STR_KBD_TRY_DIFF" xml:space="preserve">
+    <value>Try the test again using a different keyboard if possible.</value>
+  </data>
+  <data name="STR_KBD_WIRED_TROUBLE" xml:space="preserve">
+    <value>HP Desktop PCs - Wired Keyboard Troubleshooting (Windows 10, 8)</value>
+  </data>
+  <data name="STR_KBD_WIRELESS_CONNECT_ISSUES" xml:space="preserve">
+    <value>HP PCs - Wireless Keyboard and Mouse Connection Issues</value>
+  </data>
+  <data name="STR_MOUSE_BUTTON_PB" xml:space="preserve">
+    <value>The test found a problem with the mouse button. The mouse may need to be replaced.</value>
+  </data>
+  <data name="STR_MOUSE_MOVE_SENSOR" xml:space="preserve">
+    <value>The test found a problem with the mouse movement sensor. The mouse may need to be replaced.</value>
+  </data>
+  <data name="STR_MOUSE_TROUBLESHOOT_PB" xml:space="preserve">
+    <value>HP PCs - Troubleshooting Mouse Problems (Windows 10, 8)</value>
+  </data>
+  <data name="STR_MOUSE_TRY_DIFF" xml:space="preserve">
+    <value>Try the test again using a different mouse if possible.</value>
+  </data>
+  <data name="STR_PLEASE_GUIDANCE" xml:space="preserve">
+    <value>Be sure that additional guidance steps have been taken.</value>
+  </data>
+  <data name="STR_TROUBLESHOOT" xml:space="preserve">
+    <value>Troubleshoot</value>
+  </data>
+  <data name="STR_ALLOW_HP" xml:space="preserve">
+    <value>Allow HP to use your HP PC information, including serial number, product number and warranty information.</value>
+  </data>
+  <data name="STR_CLICK_PRIVACY" xml:space="preserve">
+    <value>Click HP Privacy Statement for more information.</value>
+  </data>
+  <data name="STR_FOR_ASSISTANCE" xml:space="preserve">
+    <value>For assistance, you may do any of the following:</value>
+  </data>
+  <data name="STR_IF_PC_OFFLINE" xml:space="preserve">
+    <value>If your PC is offline, use your phone to scan the provided QR Code and access HP Customer Support.</value>
+  </data>
+  <data name="STR_IF_PC_ONLINE" xml:space="preserve">
+    <value>If your PC is online, click Next to visit the HP Customer Support website.</value>
+  </data>
+  <data name="STR_IF_TALKING" xml:space="preserve">
+    <value>If you are talking to an HP Customer Support person, read aloud or copy and paste the provided Failure ID and Product ID.</value>
+  </data>
+  <data name="STR_CLICK_TROUBLESHOOT" xml:space="preserve">
+    <value>Select Troubleshoot for further action.</value>
+  </data>
+  <data name="CheckStatus" xml:space="preserve">
+    <value>Check Status</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Was your problem resolved?</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>Tell us more</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>Begin typing here</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>Characters remaining: 1000</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>Characters remaining: %d</value>
+  </data>
+  <data name="String7" xml:space="preserve">
+    <value>The Diagnostic has been launched. Please follow the steps and provide feedback when done.</value>
+  </data>
+  <data name="STR_FAILURE_DETAILS" xml:space="preserve">
+    <value>Failure details</value>
+  </data>
+  <data name="STR_SAVE_LOGS" xml:space="preserve">
+    <value>Save Logs</value>
+  </data>
+  <data name="STR_WINDOWS_UPDATE" xml:space="preserve">
+    <value>Windows Update</value>
+  </data>
+  <data name="STR_BUTTON_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="NotSure" xml:space="preserve">
+    <value>Not sure</value>
+  </data>
+  <data name="STR_CUSTOMER_FEEDBACK_WELCOME" xml:space="preserve">
+    <value>Thank you for using HP PC Hardware Diagnostics Windows. Please answer the question below.</value>
+  </data>
+  <data name="SerialNumber" xml:space="preserve">
+    <value>Serial Number</value>
+  </data>
+  <data name="STR_CLICK_CONTAC_HP" xml:space="preserve">
+    <value>Select Contact HP Support for further action.</value>
+  </data>
+  <data name="STR_CLICK_MORE_INFORMATION" xml:space="preserve">
+    <value>Select More info for more information.</value>
+  </data>
+  <data name="STR_WEBCAM_PB" xml:space="preserve">
+    <value>The test found a problem with the webcam.</value>
+  </data>
+  <data name="STR_WEBCAM_DOCUMENTS" xml:space="preserve">
+    <value>Webcam Troubleshooting</value>
+  </data>
+  <data name="BatteryStatusTest" xml:space="preserve">
+    <value>Battery Health Monitor</value>
+  </data>
+  <data name="SmartCheckTest" xml:space="preserve">
+    <value>Storage Health Monitor</value>
+  </data>
+  <data name="SoftwareUpdateCheck" xml:space="preserve">
+    <value>Software Update Monitor</value>
+  </data>
+  <data name="FastSystemTests" xml:space="preserve">
+    <value>System Scan</value>
+  </data>
+  <data name="Unscheduled" xml:space="preserve">
+    <value>Unscheduled</value>
+  </data>
+  <data name="TaskEditor" xml:space="preserve">
+    <value>TaskEditor</value>
+  </data>
+  <data name="TaskEditorSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="TaskEditorExplanation" xml:space="preserve">
+    <value>Change task scheduling settings here.</value>
+  </data>
+  <data name="TaskEditorStartsAt" xml:space="preserve">
+    <value>Starts at:</value>
+  </data>
+  <data name="TaskEditorRecursEveryWeeksNumber" xml:space="preserve">
+    <value>Recurs every number of weeks:</value>
+  </data>
+  <data name="TaskEditorOnDay" xml:space="preserve">
+    <value>On day:</value>
+  </data>
+  <data name="TaskWeeklyTrigger" xml:space="preserve">
+    <value>Scheduled at %startTime% every %dayOfWeek% of every week.</value>
+  </data>
+  <data name="TaskWeeklyTriggerInterval" xml:space="preserve">
+    <value>Scheduled at %startTime% every %dayOfWeek% of every %weeksInterval% weeks.</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="BiosUpdate" xml:space="preserve">
+    <value>BIOS Update</value>
+  </data>
+  <data name="BiosUpdateInternetConnection" xml:space="preserve">
+    <value>The BIOS update retrieves the latest BIOS version available for this platform using an internet connection to access HP site.</value>
+  </data>
+  <data name="BiosUpdateCheckForBiosUpdateOption" xml:space="preserve">
+    <value>Select 'Check for BIOS update' to retrieve the latest BIOS version available for this platform.</value>
+  </data>
+  <data name="BiosUpdateUpdateAndRebootOption" xml:space="preserve">
+    <value>If an update is available, you will be prompted with an option to 'Update and reboot'. Select this option to initiate the BIOS update.</value>
+  </data>
+  <data name="BiosVersion" xml:space="preserve">
+    <value>BIOS Version</value>
+  </data>
+  <data name="BiosDate" xml:space="preserve">
+    <value>BIOS Date</value>
+  </data>
+  <data name="BiosBinFile" xml:space="preserve">
+    <value>BIOS BIN file</value>
+  </data>
+  <data name="UpdateAndReboot" xml:space="preserve">
+    <value>Update and restart system</value>
+  </data>
+  <data name="CheckForBiosUpdate" xml:space="preserve">
+    <value>Check for BIOS update</value>
+  </data>
+  <data name="AcknowledgeToContinue" xml:space="preserve">
+    <value>Please read and select the checkbox to continue.</value>
+  </data>
+  <data name="BiosDateConsumerProduct" xml:space="preserve">
+    <value>Check for windows updates to find out if you need to update the system BIOS.</value>
+  </data>
+  <data name="RunCheckForUpdates" xml:space="preserve">
+    <value>Do you want to check for Windows updates now?</value>
+  </data>
+  <data name="BiosUpdateDisclaimer" xml:space="preserve">
+    <value>Updating the BIOS requires temporarily suspending BitLocker to flash the firmware. Your system will need to restart to complete the process. Do not interrupt the update process once initiated. Be sure to save your work prior to initiating the update.</value>
+  </data>
+  <data name="BiosUpdateNeedAcknowledgement" xml:space="preserve">
+    <value>Please acknowledge the following information to proceed.</value>
+  </data>
+  <data name="BiosUpdateFlashInProgress" xml:space="preserve">
+    <value>Flashing in progress. Do not interrupt this process. Your system will reboot automatically once the flash completes.</value>
+  </data>
+  <data name="BiosUpdateNotNeeded" xml:space="preserve">
+    <value>Your BIOS is up to date. Select 'Ok' to continue.</value>
+  </data>
+  <data name="BiosUpdateError" xml:space="preserve">
+    <value>Failed to retrieve information for your product. This can happen if the HP server is unreachable. Please try again later.</value>
+  </data>
+  <data name="BiosUpdateCurrentBiosFirwmware" xml:space="preserve">
+    <value>Current BIOS</value>
+  </data>
+  <data name="BiosUpdateLatestBiosFirwmware" xml:space="preserve">
+    <value>Latest BIOS</value>
+  </data>
+  <data name="ModeRepair" xml:space="preserve">
+    <value>Mode : REPAIR</value>
+  </data>
+  <data name="BiosDeployed" xml:space="preserve">
+    <value>Firmware image has been deployed.</value>
+  </data>  
+  <data name="BiosUpdateRequiresReboot" xml:space="preserve">
+    <value>Your system is restarting.</value>
+  </data>
+</root>

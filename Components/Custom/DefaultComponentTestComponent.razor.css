@@ -1,0 +1,97 @@
+
+.progress {
+    height: 2.5em;
+    background-color: #b9b9b9;
+    border: 1px solid #5A5A5A;
+}
+
+.progress-bar {
+    background-color: #0096d6;
+    font-size: 1.5em;
+    margin: 0;
+    padding-top: .4em;
+}
+
+.progress-bar.cancelled {
+    background-color: #e60000;
+}
+
+
+.passed {
+    color: #3ede35;
+}
+
+.failed {
+    color: #f44336;
+}
+
+.component-test-default-container {
+    margin-top: 1em; 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress {
+    /*background-color: #efefef;*/
+    background-color: #fff;
+    flex-shrink: 1;
+    flex-grow: 0;
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+    display: inline-block; 
+    flex: 1; 
+    margin: 0; 
+    height: 1.4em;
+}
+
+.test-list > li {
+    line-height: 22px;
+    padding: .5em 1em;
+    list-style-type: none;
+    border: 1px solid black;
+    border-right: transparent;
+}
+
+.test-list > div.active {
+    color: #5A5A5A;
+    font-weight: bold;
+    background-color: #F2F2F2;
+    /*background-color: #0096d6;*/
+}
+
+.test-list > div:not(.active):hover {
+    background-color: #006699;
+    color: white;
+}
+
+.failed-test, .failed-test .status-text > span {
+    background-color: #F7D7D7;
+    color: red;
+    font-weight: bold;
+}
+
+.highlight {
+    background-color: #F2F2F2;
+    color: #5A5A5A;
+    font-weight: bold;
+}
+
+.hp-table .highlight td {
+    font-size: 1.1em;
+}
+
+.hidden {
+    display: none;
+}
+
+/* this needs to be able to wrap if we leave it in the defaultComponentTest's table so that it will display as part of the currently running test */
+#additional-info-container {
+    background: #fafafa;
+    border: solid #dedede 1px;
+    margin: .25em 0 0;
+    padding: .25em;
+    white-space: pre-wrap;
+}

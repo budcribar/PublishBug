@@ -1,0 +1,80 @@
+﻿@page "/"
+@inject ComponentsLocalizer.LocalizedContent Localizer
+@inject NavigationManager NavigationManager
+@inject ISystemInfo SystemInfo
+@inject LogViewModel Model
+
+<div class='page-container-flex bg-white flex column-container' id="main-menu" >
+    <div class="page-header-container">
+        <div class="primary-section-header-24">Main Menu</div>
+    </div>
+
+    <!-- TODO <div *ngIf='settingsService.repairMode' class="flex-row flex-center">@Localizer.ModeRepair}}</div>-->
+    <div class="content">
+        <div class="inner style-override">
+            <div>
+                <div class="page-nav-item rounded padded" role="button" @onkeyup='(e) => CheckForEnter(e,"systeminformation")' tabindex="1" @onclick='() => NavigationManager.NavigateTo("systeminformation")'>
+                    @Localizer.STR_SYSINFO_TITLE
+                </div>
+                <div class="page-nav-item rounded padded" role="button" @onkeyup='(e) => CheckForEnter(e,"systemTests")'  tabindex="2" @onclick='() => NavigationManager.NavigateTo("systemTests")'>
+                    @Localizer.STR_BUTTON_SYSTEM_TESTS
+                </div>
+                <div class="page-nav-item rounded padded" role="button" @onkeyup='(e) => CheckForEnter(e,"componentTests")' tabindex="3" @onclick='() => NavigationManager.NavigateTo("componentTests")'>
+                    @Localizer.STR_BUTTON_COMPONENT_TESTS
+                </div>
+                <div class="page-nav-item rounded padded" role="button" @onkeyup='(e) => CheckForEnter(e,"logs")' tabindex="4" @onclick='() => NavigationManager.NavigateTo("logs")'>
+                    @Localizer.STR_BUTTON_TEST_LOGS
+                </div>
+                <div class="page-nav-item rounded padded" role="button" @onkeyup='(e) => CheckForEnter(e,"language")' tabindex="5" @onclick='() => NavigationManager.NavigateTo("language")'>
+                    @Localizer.STR_TITLE_LANGUAGE_SELECTION
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom style-override">
+        <!-- Application Page Button Footer Container -->
+        <div class="home-desc">
+            <div class="version-info">
+                Version: @version
+            </div>
+            <div class="version-info">
+                <span class="link" role="link" id="helpurl" tabindex="0" @onkeyup='(e) => openHpWebsite(e)' @onclick="() => openHpWebsite(null)">@Localizer.STR_HELP_URL2.Replace("%s", "www.hp.com/go/techcenter/PCDiags")</span>
+            </div>
+            <div class="version-info">
+                &#169; @copyright
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    string version = "";
+
+    protected override void OnInitialized()
+    {        
+        version = SystemInfo?.ApplicationVersion.ToString() ?? "";
+
+        // TODO This was not initialized correctly for some unknown reason
+        Model.NavigationManager = this.NavigationManager;
+        base.OnInitialized();
+    }
+
+    string copyright = "Copyright 2021 HP Development Company, L.P.";
+
+    void openHpWebsite(KeyboardEventArgs? args)
+    {
+        if (args == null)
+            Model.PopBrowseHpDiagnosticsWebsite();
+        else if (args.Code == "Enter")
+            Model.PopBrowseHpDiagnosticsWebsite();
+    }
+
+    void CheckForEnter(KeyboardEventArgs args, string target)
+    {
+        if (args.Code == "Enter")
+            NavigationManager.NavigateTo(target);
+    }
+
+}
